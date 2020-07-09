@@ -1,7 +1,7 @@
 import java.util.NoSuchElementException;
 
-// Linked List implementation for project 1 CS 3114
-public class LList {
+// Linked List implementation
+public class LList implements List {
     private Link head; // Pointer to List header
     private Link tail; // Pointer to List tail
     private Link curr; // Pointer to current Link
@@ -102,7 +102,7 @@ public class LList {
 
 
     // Move down List to "pos" position
-    public boolean mveToPos(int pos) {
+    public boolean moveToPos(int pos) {
         if ((pos < 0) || (pos > listSize))
             return false;
         curr = head.next();
@@ -132,5 +132,4 @@ public class LList {
                     + listSize + " that is not a valid element");
         return curr.element();
     }
-
 }
