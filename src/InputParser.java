@@ -79,7 +79,6 @@ public class InputParser {
             sc = new Scanner(file);
         }
         catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
         int problemNumber = 0;
         while (sc.hasNextLine()) {
