@@ -60,6 +60,7 @@ public class InputParser {
         }
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
+            line = properSpacing(line);
             if (line.split(" ").length > 2) {
                 count++;
             }
@@ -87,13 +88,8 @@ public class InputParser {
             String[] problem = line.split(" ");
             if (problem.length > 2) {
                 String answerToProblem = solver.evaluate(problem);
-                String finalLine = "";
-                for (int i = 0; i < problem.length; i++) {
-                    finalLine += problem[i];
-                    System.out.println("T: " + problem[i]);
-                }
-                finalLine += " = " + answerToProblem;
-                ans[problemNumber] = finalLine;
+                line += " = " + answerToProblem;
+                ans[problemNumber] = line;
                 problemNumber++;
             }
         }
@@ -109,8 +105,25 @@ public class InputParser {
      * @return The processed String
      */
     private String properSpacing(String unformatted) {
-        //TO-DO
-        return null;
+        char[] tocopy = unformatted.toCharArray();
+        char[] answer = new char[tocopy.length];
+        boolean addspace = false;
+        int location = 0;
+        for (int i = 0; i < tocopy.length; i++) {
+            if (tocopy[i] != ' ') {
+                addspace = true;
+                answer[location] = tocopy[i];
+                location++;
+            }
+            else {
+                if (addspace) {
+                    answer[location] = ' ';
+                    location++;
+                    addspace = false;
+                }
+            }
+        }
+        return new String(answer).trim();
     }
 
 

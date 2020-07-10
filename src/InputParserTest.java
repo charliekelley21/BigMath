@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
  */
 public class InputParserTest {
     static InputParser test;
-    
+
     public static void main(String[] args) {
         try {
             test = new InputParser("src/BignumInput.txt");
