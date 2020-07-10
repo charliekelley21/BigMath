@@ -2,7 +2,7 @@
 // Stack implemented using an Array
 class AStack<E> implements Stack<E> {
     private E stackArray[]; // Array holding stack
-    private static final int DEFAULT_SIZE = 10;
+    private static final int DEFAULT_SIZE = 100;
     private int maxSize; // Maximum size of stack
     private int top; // First free position at top
 

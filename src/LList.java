@@ -2,10 +2,10 @@ import java.util.NoSuchElementException;
 
 // Linked List implementation
 public class LList implements List {
-    private Link head; // Pointer to List header
-    private Link tail; // Pointer to List tail
-    private Link curr; // Pointer to current Link
-    private int listSize; // Size of List
+    protected Link head; // Pointer to List header
+    protected Link tail; // Pointer to List tail
+    protected Link curr; // Pointer to current Link
+    protected int listSize; // Size of List
 
     // Constructors
     LList() {
