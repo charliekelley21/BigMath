@@ -87,9 +87,15 @@ public class InputParser {
             line = properSpacing(line);
             String[] problem = line.split(" ");
             if (problem.length > 2) {
-                String answerToProblem = solver.evaluate(problem);
-                line += " = " + answerToProblem;
-                ans[problemNumber] = line;
+                String[] answerToProblem = solver.evaluate(problem);
+                String concatinationOfProblem = "";
+                for(int i = 0; i < answerToProblem.length; i++) {
+                    concatinationOfProblem += answerToProblem[i];
+                    if (i < answerToProblem.length - 1) {
+                        concatinationOfProblem += " ";
+                    }
+                }
+                ans[problemNumber] = concatinationOfProblem;
                 problemNumber++;
             }
         }
