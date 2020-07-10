@@ -1,20 +1,43 @@
 
-// Infinite precision integer, stored within a linked list
+/** 
+ * Infinite precision integer, stored within a linked list
+ * @author Charlie Kelley and Barak Finnegan
+ *
+ */
 public class PreciseInt extends LList {
 
-    // Constructors
+    /**
+     * Creates a new PreciseInt with an empty List of digits
+     */
     PreciseInt() {
         clear();
     }
     
+    /**
+     * Creates a new PreciseInt with the given value. This constructor
+     * handles leading zeros.
+     * @param num`String holding the value of a large integer with infinite precision
+     */
     PreciseInt(String num) {
         clear();
-        // store string value into Linked List Integer
-        // include error checking for string
-        // include logic to remove non-significant figures
+        int nonZeroPos = num.length();                  // stores position of last non-zero digit
+        for(int i = num.length()-1; i >= 0; i--) { 
+            char c = num.charAt(i); 
+            int digit = Character.getNumericValue(c);
+            append(digit);                              // append digit to PreciseInt
+            if ((c > '1') && (c <= '9')) {              // if digit append was non-zero, change value of position marker
+                nonZeroPos = i;
+            }  
+        }
+        for(int j = 0; j < nonZeroPos; j++) {           // remove all leading zeros at end of PreciseInt
+            remove();
+        }
     }
     
-    // Copy Constructor
+    /**
+     * Copy constructor for a PreciseInt. Copies the value of another PreciseInt
+     * @param c PreciseInt with value to copy
+     */
     PreciseInt(PreciseInt c) {
         c.moveToStart();
         while (!c.isAtEnd()) {
@@ -22,24 +45,14 @@ public class PreciseInt extends LList {
             c.next();
         }
     }
-    
-    // Simplifies Integer value by shifting down any overflow or carry-overs leftover from arithmetic 
-    public void simplify() {
-        moveToStart();
-        int simple;
-        while (!isAtEnd()) {
-            simple = getValue();
-            if (simple > 9) {
-                // set value = simple%10
-                // add one to next element
-            }
-            next();
-        }
-    }
 
     // Arithmetic methods for a PreciseInt
 
-    // Addition of two PreciseInts
+    /**
+     * Adds the values stored in two PreciseInt objects
+     * @param addend    second value to be added to the PreciseInt
+     * @return returns the sum of the two PreciseInt objects
+     */
     public PreciseInt addition(PreciseInt addend) {
         moveToStart();                                      // reset number so curr = head
         addend.moveToStart();
@@ -47,7 +60,11 @@ public class PreciseInt extends LList {
         return this;
     }
     
-    // Recursive addition
+    /**
+     * Recursive method to add two individual digits of two PreciseInt objects
+     * @param addend    second value present in the addition
+     * @param carry     carry-over from the previous sum of two digits
+     */
     public void r_addition(PreciseInt addend, int carry) {
         if (addend.isAtEnd()) { return; }                   // base case: second addend is out of things to add
         if (isAtEnd()) { append(0); }                       // extend first addend if the end is reached
@@ -59,14 +76,21 @@ public class PreciseInt extends LList {
     }
 
 
-    // Multiplication of two PreciseInts
+    /**
+     * Multiplication of two PreciseInt objects
+     * @param multiplicand  second value being multiplied
+     */
     public void multiply(PreciseInt multiplicand) {
         moveToStart();                                      // reset number so curr = head
         multiplicand.moveToStart();
         r_multiply(multiplicand, 0);
     }
     
-    // recursive multiplication
+    /**
+     * Recursive method to iterate through a single digit of the second multiplicand
+     * @param multiplicand  second PreciseInt object to iterate over
+     * @param shift holds the current digits place being multiplied
+     */
     public void r_multiply(PreciseInt multiplicand, int shift) {
         // will probably call addition() inside of return statement
         // will probably have to return PreciseInt instead of modifying first multiplicand
