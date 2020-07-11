@@ -2,7 +2,8 @@
 /**
  * BigNumArithmetic Project Runner class
  * 
- * "I have not given nor received unauthorized assistance on this assignment" - BF, CK
+ * "I have not given nor received unauthorized assistance on this assignment" -
+ * BF, CK
  * 
  * @author Charlie Kelley (PID here)
  * @author Barak Finnegan (bjfinn98)
@@ -12,7 +13,6 @@
 import java.io.FileNotFoundException;
 import java.lang.IllegalArgumentException;
 
-
 public class BigNumArithmetic {
 
     /**
@@ -20,7 +20,8 @@ public class BigNumArithmetic {
      * 
      * @param args
      *            The command line args that are passed into the project
-     * @throws FileNotFoundException error on incorrect filename
+     * @throws FileNotFoundException
+     *             error on incorrect filename
      */
     public static void main(String[] args) throws FileNotFoundException {
         if (args.length != 1) {

@@ -48,7 +48,8 @@ public class InputParser {
      * of a String array it needs to be
      * 
      * @return int of number of non-empty lines in file
-     * @throws FileNotFoundException should be impossible
+     * @throws FileNotFoundException
+     *             should be impossible
      */
     private void assignFileLength() throws FileNotFoundException {
         @SuppressWarnings("resource")
@@ -68,7 +69,8 @@ public class InputParser {
     /**
      * This will use the internal solver to get all the answers in the input
      * text file
-     * @throws FileNotFoundException 
+     * 
+     * @throws FileNotFoundException
      */
     public void evaluateTextFile() throws FileNotFoundException {
         @SuppressWarnings("resource")
@@ -81,7 +83,7 @@ public class InputParser {
             if (problem.length > 2) {
                 String[] answerToProblem = solver.evaluate(problem);
                 String concatinationOfProblem = "";
-                for(int i = 0; i < answerToProblem.length; i++) {
+                for (int i = 0; i < answerToProblem.length; i++) {
                     concatinationOfProblem += answerToProblem[i];
                     if (i < answerToProblem.length - 1) {
                         concatinationOfProblem += " ";

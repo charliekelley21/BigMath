@@ -1,26 +1,28 @@
 
 /**
  * Stack implemented using an Array
+ * 
  * @author Charlie Kelley and Barak Finnegan
  *
- * @param <E> type of value that is stored within the stack
+ * @param <E>
+ *            type of value that is stored within the stack
  */
 class AStack<E> implements Stack<E> {
     /**
      * array of type <E> that will maintain the values of the stack
      */
     private E stackArray[]; // Array holding stack
-    
+
     /**
      * default size of the stack if the size was not specified
      */
     private static final int DEFAULT_SIZE = 100;
-    
+
     /**
      * Maximum size that the stack can reach
      */
     private int maxSize; // Maximum size of stack
-    
+
     /**
      * Contains the first free position on top of the stack
      */
@@ -28,7 +30,9 @@ class AStack<E> implements Stack<E> {
 
     /**
      * Creates an empty stack of a given size
-     * @param size size of the array to hold the stack
+     * 
+     * @param size
+     *            size of the array to hold the stack
      */
     @SuppressWarnings("unchecked") // Generic array allocation
     AStack(int size) {
@@ -37,12 +41,14 @@ class AStack<E> implements Stack<E> {
         stackArray = (E[])new Object[size]; // Create stackArray
     }
 
+
     /**
      * Creates an empty stack of the default size
      */
     AStack() {
         this(DEFAULT_SIZE);
     }
+
 
     /**
      * Removes all elements from the stack
@@ -54,6 +60,7 @@ class AStack<E> implements Stack<E> {
 
     /**
      * Push "it" onto stack
+     * 
      * @return Boolean if push was successful
      */
     public boolean push(E it) {
@@ -66,6 +73,7 @@ class AStack<E> implements Stack<E> {
 
     /**
      * Remove and return top element
+     * 
      * @return top element of the stack that is popped
      */
     public E pop() {
@@ -74,8 +82,10 @@ class AStack<E> implements Stack<E> {
         return stackArray[--top];
     }
 
+
     /**
      * Determines the top value on the stack without removing that object
+     * 
      * @return top value of the stack
      */
     public E topValue() { // Return top element
@@ -84,16 +94,20 @@ class AStack<E> implements Stack<E> {
         return stackArray[top - 1];
     }
 
+
     /**
      * Return the length of the stack
+     * 
      * @return number of elements in the stack
      */
     public int length() {
         return top;
     } // Return stack size
 
+
     /**
      * Determines if the stack is empty
+     * 
      * @return Boolean value if stack size equals zero
      */
     public boolean isEmpty() {

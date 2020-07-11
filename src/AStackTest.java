@@ -62,21 +62,23 @@ public class AStackTest extends TestCase {
         assertNotNull(test1.topValue());
         assertNotNull(test2.topValue());
     }
-    
+
+
     /**
      * Tests the length() method of the AStack
      */
     public void testLength() {
         test1.push(new PreciseInt("0"));
         assertEquals(test1.length(), 1);
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             test1.push(new PreciseInt("" + i));
         }
         assertEquals(100, test1.length());
         test1.pop();
         assertEquals(99, test1.length());
     }
-    
+
+
     /**
      * Tests the isEmpty method of the AStack
      */

@@ -197,8 +197,8 @@ public class LListTest extends TestCase {
         test1.append(3);
         assertFalse(test1.isEmpty());
     }
-    
-    
+
+
     /**
      * Tests the getValue() method of LList
      */
@@ -214,7 +214,8 @@ public class LListTest extends TestCase {
         }
         try {
             test1.getValue();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             assertTrue(e instanceof NoSuchElementException);
         }
     }
