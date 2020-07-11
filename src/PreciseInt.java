@@ -59,56 +59,37 @@ public class PreciseInt extends LList {
 
 
     /**
-     * Adds the values stored in two PreciseInt objects
-     * 
-     * @param addend
-     *            second value to be added to the PreciseInt
-     * @return returns the sum of the two PreciseInt objects
-     */
-    public PreciseInt addition(PreciseInt addend) {
-        moveToStart(); // reset number so curr = head
-        addend.moveToStart();
-        r_addition(addend, 0);
-        return this;
-    }
-
-
-    /**
      * Recursive method to add two individual digits of two PreciseInt objects
      * 
      * @param addend
      *            second value present in the addition
+     * @param start
+     *            signifies if a given call to the recursive addition
+     *            function is the first in the loop
      * @param carry
      *            carry-over from the previous sum of two digits
      */
-    public void r_addition(PreciseInt addend, int carry) {
-        if (addend.isAtEnd()) {
-            return;
-        } // base case: second addend is out of things to add
-        if (isAtEnd()) {
+    public PreciseInt addition(PreciseInt addend, boolean start, int carry) {
+        if (start) { // Initialize first call so that
+            moveToStart(); // addition starts at the beginning
+            addend.moveToStart(); // of both PreciseInt objects
+        }
+        if (addend.isAtEnd()) { // base case: second addend is out of things to
+                                // add
+            return this;
+        }
+        if (isAtEnd()) { // extend first addend if the end is reached
             append(0);
-        } // extend first addend if the end is reached
+        }
         int sum = getValue() + addend.getValue() + carry; // get the sum of
                                                           // current place
         curr.setElement(sum % 10); // set element of current position to sum
                                    // (excluding carry)
         next(); // move to next position
         addend.next();
-        r_addition(addend, sum / 10); // Recursively call add function,
-                                      // including remainder value
-    }
-
-
-    /**
-     * Multiplication of two PreciseInt objects
-     * 
-     * @param multiplicand
-     *            second value being multiplied
-     */
-    public void multiply(PreciseInt multiplicand) {
-        moveToStart(); // reset number so curr = head
-        multiplicand.moveToStart();
-        r_multiply(multiplicand, 0);
+        return addition(addend, false, sum / 10); // Recursively call add
+                                                  // function, including
+                                                  // remainder value
     }
 
 
@@ -121,10 +102,40 @@ public class PreciseInt extends LList {
      * @param shift
      *            holds the current digits place being multiplied
      */
-    public void r_multiply(PreciseInt multiplicand, int shift) {
-        // will probably call addition() inside of return statement
-        // will probably have to return PreciseInt instead of modifying first
-        // multiplicand
+    public PreciseInt multiply(
+        PreciseInt multiplicand,
+        boolean start,
+        int shift) {
+        if (start) { // start multiplication at the beginning of first
+                     // multiplicand
+            moveToStart();
+        }
+        multiplicand.moveToStart(); // set second multiplicand to start before
+                                    // every iteration
+        PreciseInt temp = new PreciseInt();
+        if (isAtEnd()) { // base case: if there are no more digits to multiply,
+                         // terminate the recursion
+            return temp;
+        }
+
+        int carry = 0;
+        while (!multiplicand.isAtEnd()) { // loop through and multiply the
+                                          // current digit by the second
+                                          // multiplicand
+            int product = (getValue() * multiplicand.getValue()) + carry;
+            temp.append(product % 10); // store least significant digit of the
+                                       // product
+            carry = product / 10; // carry over the most significant digit
+            multiplicand.next();
+        }
+        for (int i = 0; i < shift; i++) { // shift final product based on place
+                                          // of the current digit to reserve
+                                          // precision
+            temp.append(0);
+        }
+        next(); // shift current digit being multiplied
+        // sum together the product of every digit by the multiplicand
+        return temp.addition(multiply(multiplicand, true, shift + 1), true, 0);
     }
 
 
