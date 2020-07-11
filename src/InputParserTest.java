@@ -47,8 +47,8 @@ public class InputParserTest extends TestCase {
         try {
             test = new InputParser("notafile.txt");
         }
-        catch (FileNotFoundException e) {
-            assertNotNull(e);
+        catch (Exception e) {
+            assertTrue(e instanceof FileNotFoundException);
         }
     }
 
