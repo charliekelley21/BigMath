@@ -2,6 +2,7 @@ import java.util.NoSuchElementException;
 
 /**
  * Linked List implementation
+ * 
  * @author Charlie Kelley and Barak Finnegan
  *
  */
@@ -10,17 +11,17 @@ public class LList implements List {
      * Pointer to the head of the Linked List
      */
     protected Link head;
-    
+
     /**
      * Pointer to the tail of the Linked List
      */
     protected Link tail;
-    
+
     /**
      * Pointer to the current position of the Linked List
      */
     protected Link curr;
-    
+
     /**
      * Current size of the LinkedList
      */
@@ -32,6 +33,7 @@ public class LList implements List {
     LList() {
         clear();
     }
+
 
     /**
      * Removes all elements from a Linked List
@@ -45,8 +47,10 @@ public class LList implements List {
 
     /**
      * Insert "newDigit" at current position
-     * @param newDigit int to be inserted to Linked List
-     * @return Boolean for successful appending 
+     * 
+     * @param newDigit
+     *            int to be inserted to Linked List
+     * @return Boolean for successful appending
      */
     public boolean insert(int newDigit) {
         curr.setNext(new Link(curr.element(), curr.next()));
@@ -57,10 +61,13 @@ public class LList implements List {
         return true;
     }
 
+
     /**
      * append "newDigit" at end of Linked List
-     * @param newDigit int to be inserted to Linked List
-     * @return Boolean for successful appending 
+     * 
+     * @param newDigit
+     *            int to be inserted to Linked List
+     * @return Boolean for successful appending
      */
     public boolean append(int newDigit) {
         tail.setNext(new Link(null));
@@ -73,6 +80,7 @@ public class LList implements List {
 
     /**
      * Removes and returns current element
+     * 
      * @return value that was removed from the Linked List
      */
     public int remove() throws NoSuchElementException {
@@ -90,12 +98,14 @@ public class LList implements List {
 
     }
 
+
     /**
      * Moves the current position to the start of the Linked List
      */
     public void moveToStart() {
         curr = head.next();
     }
+
 
     /**
      * Moves the current position to the end of the Linked List
@@ -104,24 +114,30 @@ public class LList implements List {
         curr = tail;
     }
 
+
     /**
-     * Moves the current position to the next position of the Linked List that is not the tail
+     * Moves the current position to the next position of the Linked List that
+     * is not the tail
      */
     public void next() {
         if (curr != tail)
             curr = curr.next();
     }
 
+
     /**
      * Number of Links currently within the Linked List
+     * 
      * @return length number of Links within the Linked List
      */
     public int length() {
         return listSize;
     }
 
+
     /**
-     * Moves the current position one step to the left; no change if now at front
+     * Moves the current position one step to the left; no change if now at
+     * front
      */
     public void prev() {
         if (head.next() == curr)
@@ -132,8 +148,10 @@ public class LList implements List {
         curr = temp;
     }
 
+
     /**
      * Return the position of the current element
+     * 
      * @return current position
      */
     public int currPos() {
@@ -144,9 +162,12 @@ public class LList implements List {
         return i;
     }
 
+
     /**
      * Move down Linked List to a specific position
-     * @param pos position to move curr pointer to
+     * 
+     * @param pos
+     *            position to move curr pointer to
      */
     public boolean moveToPos(int pos) {
         if ((pos < 0) || (pos > listSize))
@@ -160,6 +181,7 @@ public class LList implements List {
 
     /**
      * Determines if the current position is at the end of the Linked List
+     * 
      * @return Boolean if curr pointer is at the end of the list
      */
     public boolean isAtEnd() {
@@ -169,14 +191,17 @@ public class LList implements List {
 
     /**
      * Determines if the Linked List contains no Links
+     * 
      * @return Boolean if Linked List is empty
      */
     public boolean isEmpty() {
         return listSize == 0;
     }
 
+
     /**
      * Get the value assigned to the Link the is currently being pointed to
+     * 
      * @return value of Link that curr points to
      */
     public int getValue() throws NoSuchElementException {

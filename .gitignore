@@ -7,7 +7,6 @@ Thumbs.db
 *.class
 *.jar
 *.war
-*.txt
 *.ear
 hs_error_pid*
 *.slo
