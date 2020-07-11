@@ -48,16 +48,12 @@ public class InputParser {
      * of a String array it needs to be
      * 
      * @return int of number of non-empty lines in file
+     * @throws FileNotFoundException should be impossible
      */
-    private void assignFileLength() {
-        Scanner sc = null;
+    private void assignFileLength() throws FileNotFoundException {
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(file);
         int count = 0;
-        try {
-            sc = new Scanner(file);
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
             line = properSpacing(line);
@@ -72,14 +68,11 @@ public class InputParser {
     /**
      * This will use the internal solver to get all the answers in the input
      * text file
+     * @throws FileNotFoundException 
      */
-    public void evaluateTextFile() {
-        Scanner sc = null;
-        try {
-            sc = new Scanner(file);
-        }
-        catch (FileNotFoundException e) {
-        }
+    public void evaluateTextFile() throws FileNotFoundException {
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(file);
         int problemNumber = 0;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
