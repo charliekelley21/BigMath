@@ -29,11 +29,12 @@ public class PreciseInt extends LList {
             char c = num.charAt(i);
             int digit = Character.getNumericValue(c);
             append(digit); // append digit to PreciseInt
-            if ((c > '1') && (c <= '9')) { // if digit append was non-zero,
+            if (c != '0') { // if digit append was non-zero,
                                            // change value of position marker
                 nonZeroPos = i;
             }
         }
+        moveToPos(nonZeroPos+1);
         for (int j = 0; j < nonZeroPos; j++) { // remove all leading zeros at
                                                // end of PreciseInt
             remove();
@@ -53,6 +54,14 @@ public class PreciseInt extends LList {
             append(c.getValue());
             c.next();
         }
+    }
+    
+    public String getIntValue(boolean start) {
+        if (start) { moveToStart();}
+        if (isAtEnd()) { return ""; }
+        String d = Integer.toString(getValue());
+        next();
+        return getIntValue(false) + d;
     }
 
     // Arithmetic methods for a PreciseInt
@@ -76,6 +85,7 @@ public class PreciseInt extends LList {
         }
         if (addend.isAtEnd()) { // base case: second addend is out of things to
                                 // add
+            if (carry != 0) { append(carry); }
             return this;
         }
         if (isAtEnd()) { // extend first addend if the end is reached
