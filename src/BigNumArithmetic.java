@@ -5,7 +5,7 @@
  * "I have not given nor received unauthorized assistance on this assignment" -
  * BF, CK
  * 
- * @author Charlie Kelley (PID here)
+ * @author Charlie Kelley (charlk21)
  * @author Barak Finnegan (bjfinn98)
  * @version 2020.07.10
  */
@@ -29,15 +29,7 @@ public class BigNumArithmetic {
         }
         InputParser parse = null;
         // attempt to initialize parse
-        try {
-            parse = new InputParser(args[0]);
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (parse == null) {
-            return;
-        }
+        parse = new InputParser(args[0]);
         parse.evaluateTextFile();
         parse.printAnswers();
     }

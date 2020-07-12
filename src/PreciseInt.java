@@ -2,8 +2,9 @@
 /**
  * Infinite precision integer, stored within a linked list
  * 
- * @author Charlie Kelley and Barak Finnegan
- *
+ * @author Charlie Kelley (charlk21)
+ * @author Barak Finnegan (bjfinn98)
+ * @version 2020.07.12
  */
 public class PreciseInt extends LList {
 
@@ -30,11 +31,11 @@ public class PreciseInt extends LList {
             int digit = Character.getNumericValue(c);
             append(digit); // append digit to PreciseInt
             if (c != '0') { // if digit append was non-zero,
-                                           // change value of position marker
+                            // change value of position marker
                 nonZeroPos = i;
             }
         }
-        moveToPos(nonZeroPos+1);
+        moveToPos(nonZeroPos + 1);
         for (int j = 0; j < nonZeroPos; j++) { // remove all leading zeros at
                                                // end of PreciseInt
             remove();
@@ -55,10 +56,22 @@ public class PreciseInt extends LList {
             c.next();
         }
     }
-    
+
+
+    /**
+     * This method recursively creates a String representation of PreciseInt
+     * 
+     * @param start
+     *            boolean representing the whether to go to start
+     * @return String of PreciseInt
+     */
     public String getIntValue(boolean start) {
-        if (start) { moveToStart();}
-        if (isAtEnd()) { return ""; }
+        if (start) {
+            moveToStart();
+        }
+        if (isAtEnd()) {
+            return "";
+        }
         String d = Integer.toString(getValue());
         next();
         return getIntValue(false) + d;
@@ -85,7 +98,9 @@ public class PreciseInt extends LList {
         }
         if (addend.isAtEnd()) { // base case: second addend is out of things to
                                 // add
-            if (carry != 0) { append(carry); }
+            if (carry != 0) {
+                append(carry);
+            }
             return this;
         }
         if (isAtEnd()) { // extend first addend if the end is reached
@@ -149,9 +164,58 @@ public class PreciseInt extends LList {
     }
 
 
-    // Power of one PreciseInt to another
-    public void exponent(PreciseInt exponent) {
-        // exponentiation of "exponent" to this
+    /**
+     * This is an exponentiation method for the PreciseInt class.
+     * 
+     * @param exponent
+     *            This PreciseInt ^ exponent.
+     */
+    public PreciseInt exponent(PreciseInt exponent) {
+        // if exponent 0 or 1 return 1 or this respectively
+        String exponentInt = exponent.getIntValue(true);
+        if (exponentInt.equals("0"))
+            return new PreciseInt("1");
+        if (exponentInt.equals("1"))
+            return this;
+
+        // guaranteed to be > 1
+        // gets the last num to check if even or odd
+        exponent.moveToPos(exponent.length() - 1);
+        int lastNum = exponent.getValue();
+        exponent.moveToStart();
+
+        if (lastNum % 2 == 0) {
+            // if last number in PreciseInt even
+            exponent.divideBy2();
+
+            PreciseInt valueToBeSquared = this.exponent(exponent);
+
+            // squared
+            return valueToBeSquared.multiply(valueToBeSquared, true, 0);
+        }
+        else {
+            // if last number in PreciseInt odd
+            exponent.decrement();
+
+            // multiply by itself once
+            return this.multiply(this.exponent(exponent), true, 0);
+        }
+    }
+
+
+    /**
+     * Helper method for the exponent method, but may also be useful elsewhere.
+     */
+    public void decrement() {
+
+    }
+
+
+    /**
+     * Helper method for the exponent method
+     */
+    private void divideBy2() {
+
     }
 
 }
