@@ -5,9 +5,10 @@
  * @version 2020.07.13
  */
 public class RPNSolver {
-    AStack<PreciseInt> bin;
+    protected AStack<PreciseInt> bin;
 
     RPNSolver() {
+        bin = new AStack<PreciseInt>();
         bin.clear();
     }
 
@@ -29,25 +30,26 @@ public class RPNSolver {
             solution[i] = problem[i];
         }
         solution[solution.length - 2] = "="; // append "=" for solution
+
         for (String token : problem) { // process each token
             if (isNum(token)) {
                 bin.push(new PreciseInt(token)); // push PreciseInt objects onto
                                                  // stack
             }
             else {
-                if (bin.length() < 2) { // error check: each operation has two
-                                        // PreciseInt objects to evaluate
+                if (binSize() < 2) { // error check: each operation has two
+                                     // PreciseInt objects to evaluate
                     return solution;
                 }
                 evaluateOperator(token); // evaluate each operation token
             }
-            if (bin.length() > 1) { // error check: problem has balanced
-                                    // equation, one solution
-                return solution;
-            }
-            // append solution to the array to print
-            solution[solution.length - 1] = bin.topValue().getIntValue(true);
         }
+        if (binSize() > 1) { // error check: problem has balanced
+            // equation, one solution
+            return solution;
+        }
+        // append solution to the array to print
+        solution[solution.length - 1] = bin.topValue().getIntValue(true);
         return solution;
     }
 
@@ -65,10 +67,13 @@ public class RPNSolver {
         switch (op) {
             case "+":
                 bin.push(a.addition(b, true, 0));
+                break;
             case "*":
-                bin.push(a.multiply(b, true, 0));
+                bin.push(a.multiply(b, 0));
+                break;
             case "^":
                 bin.push(a.exponent(b));
+                break;
         }
     }
 
@@ -81,13 +86,22 @@ public class RPNSolver {
      * @return true if str holds a valid integer
      */
     public boolean isNum(String str) {
-        try {
-            Integer.parseInt(str);
-        }
-        catch (NumberFormatException e) {
-            return false;
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
         }
         return true;
+    }
+
+
+    /**
+     * Method that returns the size of the internal stack
+     * 
+     * @return size of internal stack
+     */
+    public int binSize() {
+        return bin.length();
     }
 
 }

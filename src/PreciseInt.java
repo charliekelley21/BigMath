@@ -127,14 +127,8 @@ public class PreciseInt extends LList {
      * @param shift
      *            holds the current digits place being multiplied
      */
-    public PreciseInt multiply(
-        PreciseInt multiplicand,
-        boolean start,
-        int shift) {
-        if (start) { // start multiplication at the beginning of first
-                     // multiplicand
-            moveToStart();
-        }
+    public PreciseInt multiply(PreciseInt multiplicand, int shift) {
+        moveToPos(shift);
         multiplicand.moveToStart(); // set second multiplicand to start before
                                     // every iteration
         PreciseInt temp = new PreciseInt();
@@ -143,6 +137,11 @@ public class PreciseInt extends LList {
             return temp;
         }
 
+        for (int i = 0; i < shift; i++) { // shift final product based on place
+            // of the current digit to reserve
+            // precision
+            temp.append(0);
+        }
         int carry = 0;
         while (!multiplicand.isAtEnd()) { // loop through and multiply the
                                           // current digit by the second
@@ -153,14 +152,10 @@ public class PreciseInt extends LList {
             carry = product / 10; // carry over the most significant digit
             multiplicand.next();
         }
-        for (int i = 0; i < shift; i++) { // shift final product based on place
-                                          // of the current digit to reserve
-                                          // precision
-            temp.append(0);
-        }
+        if (carry != 0) { temp.append(carry); }
         next(); // shift current digit being multiplied
         // sum together the product of every digit by the multiplicand
-        return temp.addition(multiply(multiplicand, true, shift + 1), true, 0);
+        return temp.addition(multiply(multiplicand, shift + 1), true, 0);
     }
 
 
@@ -191,14 +186,14 @@ public class PreciseInt extends LList {
             PreciseInt valueToBeSquared = this.exponent(exponent);
 
             // squared
-            return valueToBeSquared.multiply(valueToBeSquared, true, 0);
+            return valueToBeSquared.multiply(valueToBeSquared, 0);
         }
         else {
             // if last number in PreciseInt odd
             exponent.decrement();
 
             // multiply by itself once
-            return this.multiply(this.exponent(exponent), true, 0);
+            return this.multiply(this.exponent(exponent), 0);
         }
     }
 
