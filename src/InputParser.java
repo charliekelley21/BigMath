@@ -56,6 +56,7 @@ public class InputParser {
         Scanner sc = new Scanner(file);
         int count = 0;
         while (sc.hasNextLine()) {
+            // counting valid file lines
             String line = sc.nextLine();
             line = properSpacing(line);
             if (line.split(" ").length > 2) {
@@ -79,16 +80,22 @@ public class InputParser {
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
             line = properSpacing(line);
+
+            // gets the problem array
             String[] problem = line.split(" ");
+
             if (problem.length > 2) {
+                // evaluate returns the answer in string array
                 String[] answerToProblem = solver.evaluate(problem);
                 String concatinationOfProblem = "";
+                // rebuilds the answer to string
                 for (int i = 0; i < answerToProblem.length; i++) {
                     concatinationOfProblem += answerToProblem[i];
                     if (i < answerToProblem.length - 1) {
                         concatinationOfProblem += " ";
                     }
                 }
+                // store in the ans array
                 ans[problemNumber] = concatinationOfProblem;
                 problemNumber++;
             }
@@ -97,8 +104,7 @@ public class InputParser {
 
 
     /**
-     * This will get rid of the weird spacing in the input file. Condenses any
-     * number of spaces to 1.
+     * This will get rid of the weird spacing in the input file.
      * 
      * @param unformatted
      *            The preprocessed String
@@ -110,6 +116,7 @@ public class InputParser {
         boolean addspace = false;
         int location = 0;
         for (int i = 0; i < tocopy.length; i++) {
+            // copies chars to new array
             if (tocopy[i] != ' ') {
                 addspace = true;
                 answer[location] = tocopy[i];
@@ -117,12 +124,14 @@ public class InputParser {
             }
             else {
                 if (addspace) {
+                    // adds one space after a segment of chars
                     answer[location] = ' ';
                     location++;
                     addspace = false;
                 }
             }
         }
+        // converts to string and gets rid of leading and following spaces
         return new String(answer).trim();
     }
 
