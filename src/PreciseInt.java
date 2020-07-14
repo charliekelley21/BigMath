@@ -203,7 +203,7 @@ public class PreciseInt extends LList {
      * Helper method for the exponent method, but may also be useful elsewhere.
      */
     public void decrement() {
-
+        
     }
 
 
@@ -212,7 +212,7 @@ public class PreciseInt extends LList {
      * Guaranteed to be even to return a whole number.
      */
     private void divideBy2() {
-
+        
     }
 
 }
