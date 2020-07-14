@@ -97,4 +97,14 @@ public class PreciseIntTest extends TestCase {
         test1.decrement(test1.head);
         assertEquals("99", test1.getIntValue(true));
     }
+    
+    public void testDivide() {
+        test1 = new PreciseInt("217");
+        PreciseInt test2 = test1.divide(7);
+        assertEquals("31", test2.getIntValue(true));
+        
+        test1 = new PreciseInt("313");
+        test2 = test1.divide(3);
+        assertEquals("104", test2.getIntValue(true));
+    }
 }

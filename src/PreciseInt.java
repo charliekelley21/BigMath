@@ -181,9 +181,9 @@ public class PreciseInt extends LList {
 
         if (lastNum % 2 == 0) {
             // if last number in PreciseInt even
-            exponent.divideBy2();
+            PreciseInt newExponent = exponent.divide(2);
 
-            PreciseInt valueToBeSquared = this.exponent(exponent);
+            PreciseInt valueToBeSquared = this.exponent(newExponent);
 
             // squared
             return valueToBeSquared.multiply(valueToBeSquared, 0);
@@ -221,8 +221,21 @@ public class PreciseInt extends LList {
     /**
      * Helper method for the exponent method
      */
-    private void divideBy2() {
-
+    public PreciseInt divide(int divisor) {
+        PreciseInt quotient = new PreciseInt();
+        moveToPos(length()-1);
+        int dividend, remainder = 0;
+        while(head.next() != curr) {
+            dividend = (remainder * 10) + getValue();
+            quotient.moveToStart();
+            quotient.insert(dividend / divisor);
+            remainder = dividend - ((dividend/divisor)*divisor);
+            prev();
+        }
+        quotient.insert((remainder*10 + getValue())/divisor);
+        quotient.moveToPos(quotient.length()-1);
+        if (quotient.getValue() == 0) { quotient.remove(); }    // check for leading 0's
+        return quotient;
     }
 
 }
