@@ -54,7 +54,6 @@ public class PreciseIntTest extends TestCase {
     public void testCopyConstructor() {
         PreciseInt test2 = new PreciseInt("52");
         PreciseInt test1 = new PreciseInt(test2);
-
         assertEquals(2, test1.length());
         assertEquals("52", test1.getIntValue(true));
     }
@@ -73,9 +72,20 @@ public class PreciseIntTest extends TestCase {
         test1 = new PreciseInt("49");
         test3 = test1.addition(test2, true, 0);
         assertEquals("570", test3.getIntValue(true));
+    }
+    
+    /**
+     * Tests the multiply method of PreciseInt
+     */
+    public void testMultiply() {
+        PreciseInt test2 = new PreciseInt("52");
+        test1 = new PreciseInt("49");
+        PreciseInt test3 = test1.multiply(test2, 0);
+        assertEquals("2548", test3.getIntValue(true));
 
-        System.out.print(test3.getIntValue(true));
-        System.out.print(" " + test1.getIntValue(true));
-        System.out.print(" " + test2.getIntValue(true));
+        test2 = new PreciseInt("521");
+        test1 = new PreciseInt("49");
+        test3 = test1.multiply(test2, 0);
+        assertEquals("25529", test3.getIntValue(true));
     }
 }
