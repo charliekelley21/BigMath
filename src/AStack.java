@@ -2,7 +2,9 @@
 /**
  * Stack implemented using an Array
  * 
- * @author Charlie Kelley and Barak Finnegan
+ * @author Charlie Kelley   (charlk21)
+ * @source Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license
+ * @version 2020.07.14
  *
  * @param <E>
  *            type of value that is stored within the stack

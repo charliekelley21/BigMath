@@ -190,7 +190,7 @@ public class PreciseInt extends LList {
         }
         else {
             // if last number in PreciseInt odd
-            exponent.decrement();
+            exponent.decrement(exponent.head);
 
             // multiply by itself once
             return this.multiply(this.exponent(exponent), 0);
@@ -199,9 +199,22 @@ public class PreciseInt extends LList {
 
     /**
      * Helper method for the exponent method, but may also be useful elsewhere.
+     * assumes that the value is always greater than or equal to 1.
+     * @param node link in list to decrement
      */
-    public void decrement() {
-        
+    public void decrement(Link node) {
+        int v = node.element(); // get value of current node
+        if (v == 0) {   // borrow if needed using recursive call on next node
+            node.setElement(9);
+            decrement(node.next());
+        }
+        else {  // base case: decrease value without borrowing
+            node.setElement(v-1);
+        }
+        moveToPos(length()-1);  // check if borrowing left a stray 0
+        if (getValue() == 0) {
+            remove();
+        }
     }
 
 

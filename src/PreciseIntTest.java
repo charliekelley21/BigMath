@@ -3,7 +3,7 @@
  * The test case for the PreciseInt Class.
  * 
  * @author Charlie Kelley (charlk21)
- * @version 2020.07.11
+ * @version 2020.07.14
  */
 
 import student.TestCase;
@@ -86,5 +86,15 @@ public class PreciseIntTest extends TestCase {
         test1 = new PreciseInt("49");
         test3 = test1.multiply(test2, 0);
         assertEquals("25529", test3.getIntValue(true));
+    }
+    
+    public void testDecrement() {
+        test1 = new PreciseInt("1299934");
+        test1.decrement(test1.head);
+        assertEquals("1299933", test1.getIntValue(true));
+        
+        test1 = new PreciseInt("100");
+        test1.decrement(test1.head);
+        assertEquals("99", test1.getIntValue(true));
     }
 }
