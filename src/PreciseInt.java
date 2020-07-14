@@ -4,11 +4,12 @@
  * 
  * @author Charlie Kelley (charlk21)
  * @author Barak Finnegan (bjfinn98)
-<<<<<<< HEAD
+ *         <<<<<<< HEAD
  * @version 2020.07.13
-=======
+ *          =======
  * @version 2020.07.14
->>>>>>> branch 'master' of https://github.com/charliekelley21/BigMath.git
+ *          >>>>>>> branch 'master' of
+ *          https://github.com/charliekelley21/BigMath.git
  */
 public class PreciseInt extends LList {
 
@@ -29,10 +30,10 @@ public class PreciseInt extends LList {
      */
     PreciseInt(String num) {
         clear();
-        int nonZeroPos = num.length(); // stores position of last non-zero digit
+        int nonZeroPos = 0; // stores position of last non-zero digit
         boolean hasInt = false;
-        for (int i = num.length() - 1; i >= 0; i--) {
-            char c = num.charAt(i);
+        for (int i = 1; i <= num.length(); i++) {
+            char c = num.charAt(num.length()-i);
             int digit = Character.getNumericValue(c);
             append(digit); // append digit to PreciseInt
             if (c != '0') { // if digit append was non-zero,
@@ -42,15 +43,15 @@ public class PreciseInt extends LList {
             }
         }
         // allow zeroes to be a number
-        if(!hasInt) {
-            for(int j = 0; j < num.length() - 1; j++) {
+        if (!hasInt) {
+            for (int j = 0; j < num.length() - 1; j++) {
                 remove();
             }
-        } else {
-            moveToPos(nonZeroPos + 1);
-            for (int j = 0; j < nonZeroPos; j++) { // remove all leading zeros at
-                                                       // end of PreciseInt
-                 remove();
+        }
+        else {  //remove leading zeros
+            moveToPos(nonZeroPos);
+            while(!isAtEnd()) {
+                remove();
             }
         }
     }
@@ -165,7 +166,9 @@ public class PreciseInt extends LList {
             carry = product / 10; // carry over the most significant digit
             multiplicand.next();
         }
-        if (carry != 0) { temp.append(carry); }
+        if (carry != 0) {
+            temp.append(carry);
+        }
         next(); // shift current digit being multiplied
         // sum together the product of every digit by the multiplicand
         return temp.addition(multiply(multiplicand, shift + 1), true, 0);
@@ -215,21 +218,24 @@ public class PreciseInt extends LList {
         }
     }
 
+
     /**
      * Helper method for the exponent method, but may also be useful elsewhere.
      * assumes that the value is always greater than or equal to 1.
-     * @param node link in list to decrement
+     * 
+     * @param node
+     *            link in list to decrement
      */
     public void decrement(Link node) {
         int v = node.element(); // get value of current node
-        if (v == 0) {   // borrow if needed using recursive call on next node
+        if (v == 0) { // borrow if needed using recursive call on next node
             node.setElement(9);
             decrement(node.next());
         }
-        else {  // base case: decrease value without borrowing
-            node.setElement(v-1);
+        else { // base case: decrease value without borrowing
+            node.setElement(v - 1);
         }
-        moveToPos(length()-1);  // check if borrowing left a stray 0
+        moveToPos(length() - 1); // check if borrowing left a stray 0
         if (getValue() == 0) {
             remove();
         }
@@ -242,18 +248,20 @@ public class PreciseInt extends LList {
      */
     public PreciseInt divide(int divisor) {
         PreciseInt quotient = new PreciseInt();
-        moveToPos(length()-1);
+        moveToPos(length() - 1);
         int dividend, remainder = 0;
-        while(head.next() != curr) {
+        while (head.next() != curr) {
             dividend = (remainder * 10) + getValue();
             quotient.moveToStart();
             quotient.insert(dividend / divisor);
-            remainder = dividend - ((dividend/divisor)*divisor);
+            remainder = dividend - ((dividend / divisor) * divisor);
             prev();
         }
-        quotient.insert((remainder*10 + getValue())/divisor);
-        quotient.moveToPos(quotient.length()-1);
-        if (quotient.getValue() == 0) { quotient.remove(); }    // check for leading 0's
+        quotient.insert((remainder * 10 + getValue()) / divisor);
+        quotient.moveToPos(quotient.length() - 1);
+        if (quotient.getValue() == 0) {
+            quotient.remove();
+        } // check for leading 0's
         return quotient;
     }
 

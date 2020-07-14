@@ -46,7 +46,7 @@ public class PreciseIntTest extends TestCase {
         assertEquals(2, test1.length());
         assertEquals("52", test1.getIntValue(true));
 
-        test1 = new PreciseInt("0004395");
+        test1 = new PreciseInt("0000000000000004395");
         assertEquals(4, test1.length());
         assertEquals("4395", test1.getIntValue(true));
         
