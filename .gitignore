@@ -4,6 +4,7 @@
 .DS_Store
 Thumbs.db
 /bin/
+.classpath
 *.class
 *.jar
 *.war
@@ -25,3 +26,4 @@ hs_error_pid*
 *.lib
 *.exe
 *.app
+
