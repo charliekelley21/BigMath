@@ -49,6 +49,10 @@ public class PreciseIntTest extends TestCase {
         test1 = new PreciseInt("0004395");
         assertEquals(4, test1.length());
         assertEquals("4395", test1.getIntValue(true));
+        
+        test1 = new PreciseInt("000");
+        assertEquals(1, test1.length());
+        assertEquals("0", test1.getIntValue(true));
     }
 
 
@@ -93,6 +97,33 @@ public class PreciseIntTest extends TestCase {
         assertEquals("25529", test3.getIntValue(true));
     }
     
+    
+    /**
+     * Tests the exponent method of PreciseInt
+     */
+    public void testExponent() {
+        test1 = new PreciseInt("12");
+        PreciseInt test2 = new PreciseInt("00");
+        test1 = test1.exponent(test2);
+        assertEquals("1", test1.getIntValue(true));
+        test1 = new PreciseInt("12");
+        test2 = new PreciseInt("1");
+        test1 = test1.exponent(test2);
+        assertEquals("12", test1.getIntValue(true));
+        test1 = new PreciseInt("12");
+        test2 = new PreciseInt("2");
+        test1 = test1.exponent(test2);
+        assertEquals("144", test1.getIntValue(true));
+        test1 = new PreciseInt("5");
+        test2 = new PreciseInt("3");
+        test1 = test1.exponent(test2);
+        assertEquals("125", test1.getIntValue(true));
+    }
+    
+    
+    /**
+     * Tests the decrement method of PreciseInt
+     */
     public void testDecrement() {
         test1 = new PreciseInt("1299934");
         test1.decrement(test1.head);
@@ -103,6 +134,10 @@ public class PreciseIntTest extends TestCase {
         assertEquals("99", test1.getIntValue(true));
     }
     
+    
+    /**
+     * Tests the divide method of PreciseInt
+     */
     public void testDivide() {
         test1 = new PreciseInt("217");
         PreciseInt test2 = test1.divide(7);

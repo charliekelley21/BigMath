@@ -30,6 +30,7 @@ public class PreciseInt extends LList {
     PreciseInt(String num) {
         clear();
         int nonZeroPos = num.length(); // stores position of last non-zero digit
+        boolean hasInt = false;
         for (int i = num.length() - 1; i >= 0; i--) {
             char c = num.charAt(i);
             int digit = Character.getNumericValue(c);
@@ -37,12 +38,20 @@ public class PreciseInt extends LList {
             if (c != '0') { // if digit append was non-zero,
                             // change value of position marker
                 nonZeroPos = i;
+                hasInt = true;
             }
         }
-        moveToPos(nonZeroPos + 1);
-        for (int j = 0; j < nonZeroPos; j++) { // remove all leading zeros at
-                                               // end of PreciseInt
-            remove();
+        // allow zeroes to be a number
+        if(!hasInt) {
+            for(int j = 0; j < num.length() - 1; j++) {
+                remove();
+            }
+        } else {
+            moveToPos(nonZeroPos + 1);
+            for (int j = 0; j < nonZeroPos; j++) { // remove all leading zeros at
+                                                       // end of PreciseInt
+                 remove();
+            }
         }
     }
 
@@ -172,31 +181,35 @@ public class PreciseInt extends LList {
     public PreciseInt exponent(PreciseInt exponent) {
         // if exponent 0 or 1 return 1 or this respectively
         String exponentInt = exponent.getIntValue(true);
-        if (exponentInt.equals("0"))
-            return new PreciseInt("1");
-        if (exponentInt.equals("1"))
+        if (exponentInt.equals("0")) {
+            PreciseInt temp = new PreciseInt();
+            temp.append(1);
+            return temp;
+        }
+        if (exponentInt.equals("1")) {
             // anything > 1 should converge to 1. Base Case.
             return this;
+        }
 
         // guaranteed to be > 1
         // gets the last num to check if even or odd
-        exponent.moveToPos(exponent.length() - 1);
-        int lastNum = exponent.getValue();
+        int curr = exponent.currPos();
         exponent.moveToStart();
+        int lastNum = exponent.getValue();
+        exponent.moveToPos(curr);
 
         if (lastNum % 2 == 0) {
             // if last number in PreciseInt even
             PreciseInt newExponent = exponent.divide(2);
 
             PreciseInt valueToBeSquared = this.exponent(newExponent);
-
+            PreciseInt temp = new PreciseInt(valueToBeSquared);
             // squared
-            return valueToBeSquared.multiply(valueToBeSquared, 0);
+            return valueToBeSquared.multiply(temp, 0);
         }
         else {
             // if last number in PreciseInt odd
             exponent.decrement(exponent.head);
-
             // multiply by itself once
             return this.multiply(this.exponent(exponent), 0);
         }
