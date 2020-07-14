@@ -3,7 +3,8 @@
  * The test case for the PreciseInt Class.
  * 
  * @author Charlie Kelley (charlk21)
- * @version 2020.07.11
+ * @author Barak Finnegan (bjfinn98)
+ * @version 2020.07.13
  */
 
 import student.TestCase;

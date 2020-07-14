@@ -4,7 +4,7 @@
  * 
  * @author Charlie Kelley (charlk21)
  * @author Barak Finnegan (bjfinn98)
- * @version 2020.07.12
+ * @version 2020.07.13
  */
 public class PreciseInt extends LList {
 
@@ -176,6 +176,7 @@ public class PreciseInt extends LList {
         if (exponentInt.equals("0"))
             return new PreciseInt("1");
         if (exponentInt.equals("1"))
+            // anything > 1 should converge to 1. Base Case.
             return this;
 
         // guaranteed to be > 1
@@ -213,6 +214,7 @@ public class PreciseInt extends LList {
 
     /**
      * Helper method for the exponent method
+     * Guaranteed to be even to return a whole number.
      */
     private void divideBy2() {
 
