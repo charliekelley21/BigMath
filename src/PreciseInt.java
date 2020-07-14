@@ -4,7 +4,7 @@
  * 
  * @author Charlie Kelley (charlk21)
  * @author Barak Finnegan (bjfinn98)
- * @version 2020.07.12
+ * @version 2020.07.13
  */
 public class PreciseInt extends LList {
 
@@ -196,7 +196,6 @@ public class PreciseInt extends LList {
             return this.multiply(this.exponent(exponent), 0);
         }
     }
-
 
     /**
      * Helper method for the exponent method, but may also be useful elsewhere.
