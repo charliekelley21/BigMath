@@ -4,7 +4,7 @@
  * 
  * @author Charlie Kelley (charlk21)
  * @author Barak Finnegan (bjfinn98)
- * @version 2020.07.13
+ * @version 2020.07.14
  */
 public class PreciseInt extends LList {
 
@@ -201,7 +201,7 @@ public class PreciseInt extends LList {
      * Helper method for the exponent method, but may also be useful elsewhere.
      */
     public void decrement() {
-
+        
     }
 
 
