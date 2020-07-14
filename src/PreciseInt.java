@@ -4,7 +4,11 @@
  * 
  * @author Charlie Kelley (charlk21)
  * @author Barak Finnegan (bjfinn98)
+<<<<<<< HEAD
  * @version 2020.07.13
+=======
+ * @version 2020.07.14
+>>>>>>> branch 'master' of https://github.com/charliekelley21/BigMath.git
  */
 public class PreciseInt extends LList {
 
@@ -182,28 +186,40 @@ public class PreciseInt extends LList {
 
         if (lastNum % 2 == 0) {
             // if last number in PreciseInt even
-            exponent.divideBy2();
+            PreciseInt newExponent = exponent.divide(2);
 
-            PreciseInt valueToBeSquared = this.exponent(exponent);
+            PreciseInt valueToBeSquared = this.exponent(newExponent);
 
             // squared
             return valueToBeSquared.multiply(valueToBeSquared, 0);
         }
         else {
             // if last number in PreciseInt odd
-            exponent.decrement();
+            exponent.decrement(exponent.head);
 
             // multiply by itself once
             return this.multiply(this.exponent(exponent), 0);
         }
     }
 
-
     /**
      * Helper method for the exponent method, but may also be useful elsewhere.
+     * assumes that the value is always greater than or equal to 1.
+     * @param node link in list to decrement
      */
-    public void decrement() {
-        
+    public void decrement(Link node) {
+        int v = node.element(); // get value of current node
+        if (v == 0) {   // borrow if needed using recursive call on next node
+            node.setElement(9);
+            decrement(node.next());
+        }
+        else {  // base case: decrease value without borrowing
+            node.setElement(v-1);
+        }
+        moveToPos(length()-1);  // check if borrowing left a stray 0
+        if (getValue() == 0) {
+            remove();
+        }
     }
 
 
@@ -211,8 +227,21 @@ public class PreciseInt extends LList {
      * Helper method for the exponent method
      * Guaranteed to be even to return a whole number.
      */
-    private void divideBy2() {
-        
+    public PreciseInt divide(int divisor) {
+        PreciseInt quotient = new PreciseInt();
+        moveToPos(length()-1);
+        int dividend, remainder = 0;
+        while(head.next() != curr) {
+            dividend = (remainder * 10) + getValue();
+            quotient.moveToStart();
+            quotient.insert(dividend / divisor);
+            remainder = dividend - ((dividend/divisor)*divisor);
+            prev();
+        }
+        quotient.insert((remainder*10 + getValue())/divisor);
+        quotient.moveToPos(quotient.length()-1);
+        if (quotient.getValue() == 0) { quotient.remove(); }    // check for leading 0's
+        return quotient;
     }
 
 }
