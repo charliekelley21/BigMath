@@ -31,6 +31,7 @@ public class PreciseIntTest extends TestCase {
         assertEquals("1234", test1.getIntValue(true));
     }
 
+
     /**
      * Tests the constructor of PreciseInt
      */
@@ -64,6 +65,9 @@ public class PreciseIntTest extends TestCase {
     }
 
 
+    /**
+     * Tests the PreciseInt with various operations
+     */
     public void testMultipleOperations() {
         // "99999999 990001 * 1119111 55565 33333 + * + 88888888 + =
         // 99099674628565"

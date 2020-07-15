@@ -10,6 +10,7 @@ import student.TestCase;
 
 /**
  * Tests the RPNSolver class
+ * 
  * @author Charlie Kelley (charlk21)
  * @version 2020.07.15
  *
@@ -24,7 +25,8 @@ public class RPNSolverTest extends TestCase {
     public void setUp() {
         testRPN = new RPNSolver();
     }
-    
+
+
     /**
      * Tests a null operator if syntax checking was required
      */
@@ -34,7 +36,7 @@ public class RPNSolverTest extends TestCase {
         testRPN.evaluateOperator("-");
         PreciseInt errorInt = testRPN.bin.topValue();
         assertEquals(errorInt.length(), 0);
-        
+
     }
 
 
@@ -76,6 +78,9 @@ public class RPNSolverTest extends TestCase {
     }
 
 
+    /**
+     * Tests the errors that can arise from RPNSolver
+     */
     public void testEvaluateBad() {
         assertEquals(0, testRPN.binSize());
         String[] problem = { "+", "23", "+", "2", "*" };
