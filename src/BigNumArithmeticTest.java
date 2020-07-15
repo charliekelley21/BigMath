@@ -10,6 +10,8 @@ import student.TestCase;
 
 public class BigNumArithmeticTest extends TestCase {
 
+    private static BigNumArithmetic test = new BigNumArithmetic();
+    
     /**
      * Tests the main method of BigNumArithmetic
      */
@@ -26,10 +28,11 @@ public class BigNumArithmeticTest extends TestCase {
     /**
      * Tests the main method of BigNumArithmetic
      */
+    @SuppressWarnings("static-access")
     public void testMain() {
         String[] arg = new String[] { "src/test/BignumInput.txt" };
         try {
-            BigNumArithmetic.main(arg);
+            test.main(arg);
         }
         catch (Exception e) {
         }
