@@ -146,8 +146,9 @@ public class LList implements List {
         if (head.next() == curr)
             return;
         Link temp = head;
-        while (temp.next() != curr)
+        while (temp.next() != curr) {
             temp = temp.next();
+        }
         curr = temp;
     }
 
