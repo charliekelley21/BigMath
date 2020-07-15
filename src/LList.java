@@ -3,7 +3,7 @@ import java.util.NoSuchElementException;
 /**
  * Linked List implementation
  * Copyright 2016 by OpenDSA Project Contributors and distributed under
- *     an MIT license
+ * an MIT license
  * 
  * @author Charlie Kelley (charlk21)
  * @version 2020.07.14
@@ -42,7 +42,8 @@ public class LList implements List {
      * Removes all elements from a Linked List
      */
     public void clear() {
-        curr = tail = new Link(null); // create tail
+        tail = new Link(null); // create tail
+        curr = tail;
         head = new Link(tail); // create header
         listSize = 0;
     }
@@ -58,8 +59,9 @@ public class LList implements List {
     public boolean insert(int newDigit) {
         curr.setNext(new Link(curr.element(), curr.next()));
         curr.setElement(newDigit);
-        if (tail == curr)
+        if (tail == curr) {
             tail = curr.next(); // new tail
+        }
         listSize++;
         return true;
     }
@@ -87,14 +89,16 @@ public class LList implements List {
      * @return value that was removed from the Linked List
      */
     public int remove() throws NoSuchElementException {
-        if (curr == tail) // nothing to remove
+        if (curr == tail) {// nothing to remove
             throw new NoSuchElementException("remove() in LList has current of "
                 + curr + " and size of " + listSize
                 + " that is not a valid element");
+        }
         int removeDigit = curr.element(); // remember digit
         curr.setElement(curr.next().element()); // pull forward the next element
-        if (curr.next() == tail)
+        if (curr.next() == tail) {
             tail = curr; // removed last, move tail
+        }
         curr.setNext(curr.next().next()); // point around unneeded digit
         listSize--; // decrease List size by one
         return removeDigit; // return value
@@ -123,8 +127,9 @@ public class LList implements List {
      * is not the tail
      */
     public void next() {
-        if (curr != tail)
+        if (curr != tail) {
             curr = curr.next();
+        }
     }
 
 
@@ -143,8 +148,9 @@ public class LList implements List {
      * front
      */
     public void prev() {
-        if (head.next() == curr)
+        if (head.next() == curr) {
             return;
+        }
         Link temp = head;
         while (temp.next() != curr) {
             temp = temp.next();
@@ -161,8 +167,9 @@ public class LList implements List {
     public int currPos() {
         Link temp = head.next();
         int i;
-        for (i = 0; curr != temp; i++)
+        for (i = 0; curr != temp; i++) {
             temp = temp.next();
+        }
         return i;
     }
 
@@ -174,8 +181,9 @@ public class LList implements List {
      *            position to move curr pointer to
      */
     public boolean moveToPos(int pos) {
-        if ((pos < 0) || (pos > listSize))
+        if ((pos < 0) || (pos > listSize)) {
             return false;
+        }
         curr = head.next();
         for (int i = 0; i < pos; i++) {
             curr = curr.next();
@@ -210,10 +218,11 @@ public class LList implements List {
      * @return value of Link that curr points to
      */
     public int getValue() throws NoSuchElementException {
-        if (curr == tail)
+        if (curr == tail) {
             throw new NoSuchElementException(
                 "getValue() in LList has current of " + curr + " and size of "
                     + listSize + " that is not a valid element");
+        }
         return curr.element();
     }
 }
