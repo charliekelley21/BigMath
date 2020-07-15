@@ -4,12 +4,7 @@
  * 
  * @author Charlie Kelley (charlk21)
  * @author Barak Finnegan (bjfinn98)
- *         <<<<<<< HEAD
- * @version 2020.07.13
- *          =======
- * @version 2020.07.14
- *          >>>>>>> branch 'master' of
- *          https://github.com/charliekelley21/BigMath.git
+ * @version 2020.07.15
  */
 public class PreciseInt extends LList {
 
@@ -246,7 +241,10 @@ public class PreciseInt extends LList {
         return quotient;
     }
 
-
+    /**
+     * Method cleans any leading zeros while allowing for a PreciseInt
+     * to hold a value of zero
+     */
     public void cleanZeros() {
         moveToPos(length() - 1);
         if ((getValue() == 0) && (length() > 1)) {
