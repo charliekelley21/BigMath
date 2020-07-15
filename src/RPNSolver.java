@@ -72,7 +72,7 @@ public class RPNSolver {
                 bin.push(a.multiply(b, 0));
                 break;
             case "^":
-                bin.push(a.exponent(b));
+                bin.push(b.exponent(a));
                 break;
         }
     }
