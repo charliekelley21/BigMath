@@ -54,6 +54,12 @@ public class InputParserTest extends TestCase {
         catch (Exception e) {
             assertTrue(e instanceof FileNotFoundException);
         }
+        try {
+            test = new InputParser("src/test");
+        }
+        catch (Exception e) {
+            assertTrue(e instanceof FileNotFoundException);
+        }
     }
 
 }
