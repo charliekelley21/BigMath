@@ -220,24 +220,6 @@ public class PreciseInt extends LList {
             remove();
         }
     }
-    
-    /**
-     * Helper method for the addition method, but may also be useful elsewhere.
-     * assumes that the value is always greater than or equal to 1.
-     * 
-     * @param node
-     *            link in list to increment
-     */
-    public void increment(Link node, int carry) {
-        if (node == tail) {
-            append(carry);
-        }
-        int v = node.element() + carry; // get value of current node
-        node.setElement(v%10);
-        if (v > 9) {
-            increment(node.next(), v/10);
-        }
-    }
 
 
     /**
