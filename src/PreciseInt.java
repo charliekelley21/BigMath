@@ -20,7 +20,8 @@ public class PreciseInt extends LList {
      * Creates a new PreciseInt with the given value. This constructor
      * handles leading zeros.
      * 
-     * @param num`String
+     * @param num
+     *            String
      *            holding the value of a large integer with infinite precision
      */
     PreciseInt(String num) {
@@ -81,6 +82,7 @@ public class PreciseInt extends LList {
      *            function is the first in the loop
      * @param carry
      *            carry-over from the previous sum of two digits
+     * @return sum of two PreciseInt objects
      */
     public PreciseInt addition(PreciseInt addend, boolean start, int carry) {
         if (start) { // Initialize first call so that
@@ -117,6 +119,7 @@ public class PreciseInt extends LList {
      *            second PreciseInt object to iterate over
      * @param shift
      *            holds the current digits place being multiplied
+     * @return product of two PreciseInt objects
      */
     public PreciseInt multiply(PreciseInt multiplicand, int shift) {
         moveToPos(shift);
@@ -158,6 +161,7 @@ public class PreciseInt extends LList {
      * @return PreciseInt the result of the operation
      * @param exponent
      *            This PreciseInt ^ exponent.
+     * @return exponentiation of two PreciseInt objects
      */
     public PreciseInt exponent(PreciseInt exponent) {
         // if exponent 0 or 1 return 1 or this respectively
@@ -222,6 +226,10 @@ public class PreciseInt extends LList {
     /**
      * Helper method for the exponent method
      * Guaranteed to be even to return a whole number.
+     * 
+     * @param divisor
+     *            single digit value to divide by
+     * @return PrecseInt object divided by divisor
      */
     public PreciseInt divide(int divisor) {
         PreciseInt quotient = new PreciseInt();
