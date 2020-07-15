@@ -3,12 +3,8 @@
  * The test case for the PreciseInt Class.
  * 
  * @author Charlie Kelley (charlk21)
-<<<<<<< HEAD
  * @author Barak Finnegan (bjfinn98)
  * @version 2020.07.13
-=======
- * @version 2020.07.14
->>>>>>> branch 'master' of https://github.com/charliekelley21/BigMath.git
  */
 
 import student.TestCase;
