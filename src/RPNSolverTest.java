@@ -8,6 +8,12 @@
 
 import student.TestCase;
 
+/**
+ * Tests the RPNSolver class
+ * @author Charlie Kelley (charlk21)
+ * @version 2020.07.15
+ *
+ */
 public class RPNSolverTest extends TestCase {
     // set up variables
     private RPNSolver testRPN;
@@ -17,6 +23,18 @@ public class RPNSolverTest extends TestCase {
      */
     public void setUp() {
         testRPN = new RPNSolver();
+    }
+    
+    /**
+     * Tests a null operator if syntax checking was required
+     */
+    public void testEvaluateOperator() {
+        testRPN.bin.push(new PreciseInt("1"));
+        testRPN.bin.push(new PreciseInt("2"));
+        testRPN.evaluateOperator("-");
+        PreciseInt errorInt = testRPN.bin.topValue();
+        assertEquals(errorInt.length(), 0);
+        
     }
 
 

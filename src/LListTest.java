@@ -9,6 +9,12 @@
 import java.util.NoSuchElementException;
 import student.TestCase;
 
+/**
+ * Tests the LList class
+ * @author Barak Finnegan (bjfinn98)
+ * @version 2020.07.15
+ *
+ */
 public class LListTest extends TestCase {
     // set up variables
     private LList test1;

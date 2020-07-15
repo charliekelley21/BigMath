@@ -8,6 +8,12 @@
 
 import student.TestCase;
 
+/**
+ * Tests the BigNumArithmetic class
+ * @author Barak Finnegan (bjfinn98)
+ * @version 2020.07.15
+ *
+ */
 public class BigNumArithmeticTest extends TestCase {
 
     private static BigNumArithmetic test = new BigNumArithmetic();

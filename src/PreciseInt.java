@@ -248,6 +248,9 @@ public class PreciseInt extends LList {
      * to hold a value of zero
      */
     public void cleanZeros() {
+        if (length() == 0) {
+            return;
+        }
         moveToPos(length() - 1);
         if ((getValue() == 0) && (length() > 1)) {
             remove();
