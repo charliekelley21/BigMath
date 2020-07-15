@@ -225,7 +225,8 @@ public class PreciseInt extends LList {
     public PreciseInt divide(int divisor) {
         PreciseInt quotient = new PreciseInt();
         moveToPos(length() - 1);
-        int dividend, remainder = 0;
+        int dividend;
+        int remainder = 0;
         while (head.next() != curr) {
             dividend = (remainder * 10) + getValue();
             quotient.moveToStart();
