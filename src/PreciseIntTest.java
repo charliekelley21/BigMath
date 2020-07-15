@@ -61,7 +61,7 @@ public class PreciseIntTest extends TestCase {
      */
     public void testCopyConstructor() {
         PreciseInt test2 = new PreciseInt("52");
-        PreciseInt test1 = new PreciseInt(test2);
+        test1 = new PreciseInt(test2);
         assertEquals(2, test1.length());
         assertEquals("52", test1.getIntValue(true));
     }
