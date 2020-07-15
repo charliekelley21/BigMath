@@ -78,8 +78,8 @@ public class RPNSolver {
      *            string of operation to be performed
      */
     public void evaluateOperator(String op) {
-        PreciseInt a = bin.pop();
         PreciseInt b = bin.pop();
+        PreciseInt a = bin.pop();
         switch (op) {
             case "+":
                 bin.push(a.addition(b, true, 0));
