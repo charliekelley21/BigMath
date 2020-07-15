@@ -177,8 +177,9 @@ public class LList implements List {
         if ((pos < 0) || (pos > listSize))
             return false;
         curr = head.next();
-        for (int i = 0; i < pos; i++)
+        for (int i = 0; i < pos; i++) {
             curr = curr.next();
+        }
         return true;
     }
 
