@@ -20,7 +20,6 @@ public class PreciseInt extends LList {
         clear();
     }
 
-
     /**
      * Creates a new PreciseInt with the given value. This constructor
      * handles leading zeros.
@@ -30,30 +29,12 @@ public class PreciseInt extends LList {
      */
     PreciseInt(String num) {
         clear();
-        int nonZeroPos = 0; // stores position of last non-zero digit
-        boolean hasInt = false;
         for (int i = 1; i <= num.length(); i++) {
             char c = num.charAt(num.length() - i);
             int digit = Character.getNumericValue(c);
             append(digit); // append digit to PreciseInt
-            if (c != '0') { // if digit append was non-zero,
-                            // change value of position marker
-                nonZeroPos = i;
-                hasInt = true;
-            }
         }
-        // allow zeroes to be a number
-        if (!hasInt) {
-            for (int j = 0; j < num.length() - 1; j++) {
-                remove();
-            }
-        }
-        else { // remove leading zeros
-            moveToPos(nonZeroPos);
-            while (!isAtEnd()) {
-                remove();
-            }
-        }
+        cleanZeros();
     }
 
 
@@ -280,6 +261,17 @@ public class PreciseInt extends LList {
             quotient.remove();
         } // check for leading 0's
         return quotient;
+    }
+    
+    public void cleanZeros() {
+        moveToPos(length()-1);
+        if ((getValue() == 0) && (length() > 1)) {
+            remove();
+            cleanZeros();
+        }
+        else {
+            return;
+        }
     }
 
 }

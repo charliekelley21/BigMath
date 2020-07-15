@@ -67,6 +67,7 @@ public class RPNSolver {
             }
         }
         prob[prob.length-2] = "=";
+        prob[prob.length-1] = "";
         return prob;
     }
 
@@ -91,7 +92,8 @@ public class RPNSolver {
             case "^":
                 solution = a.exponent(b);
                 break;
-        }    
+        }
+        solution.cleanZeros();
         bin.push(solution);
     }
 

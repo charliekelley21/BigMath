@@ -58,7 +58,7 @@ public class RPNSolverTest extends TestCase {
         String[] solution = testRPN.evaluate(problem);
         assertEquals(solution[solution.length - 2], "="); // "=" still appended
                                                           // despite bad input
-        assertEquals(solution[solution.length - 1], null); // no solution append
+        assertEquals(solution[solution.length - 1], ""); // no solution append
                                                            // because of
                                                            // incorrect equation
 
@@ -66,7 +66,7 @@ public class RPNSolverTest extends TestCase {
         solution = testRPN.evaluate(problem2);
         assertEquals(solution[solution.length - 2], "="); // "=" still appended
                                                           // despite bad input
-        assertEquals(solution[solution.length - 1], null); // no solution append
+        assertEquals(solution[solution.length - 1], ""); // no solution append
                                                            // because of
                                                            // incorrect equation
     }
