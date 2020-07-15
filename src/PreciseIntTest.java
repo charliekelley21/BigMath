@@ -95,6 +95,11 @@ public class PreciseIntTest extends TestCase {
         test1 = new PreciseInt("49");
         test3 = test1.multiply(test2, 0);
         assertEquals("25529", test3.getIntValue(true));
+        
+        test2 = new PreciseInt("99999999");
+        test1 = new PreciseInt("990001");
+        test3 = test1.multiply(test2, 0);
+        assertEquals("99000099009999", test3.getIntValue(true));
     }
     
     
@@ -106,14 +111,17 @@ public class PreciseIntTest extends TestCase {
         PreciseInt test2 = new PreciseInt("00");
         test1 = test1.exponent(test2);
         assertEquals("1", test1.getIntValue(true));
+        
         test1 = new PreciseInt("12");
         test2 = new PreciseInt("1");
         test1 = test1.exponent(test2);
         assertEquals("12", test1.getIntValue(true));
+        
         test1 = new PreciseInt("12");
         test2 = new PreciseInt("2");
         test1 = test1.exponent(test2);
         assertEquals("144", test1.getIntValue(true));
+        
         test1 = new PreciseInt("5");
         test2 = new PreciseInt("3");
         test1 = test1.exponent(test2);
@@ -146,5 +154,28 @@ public class PreciseIntTest extends TestCase {
         test1 = new PreciseInt("313");
         test2 = test1.divide(3);
         assertEquals("104", test2.getIntValue(true));
+    }
+    
+    public void testMultipleOperations() {
+        // "99999999 990001 * 1119111 55565 33333 + * + 88888888 + = 99099674628565"
+        test1 = new PreciseInt("99999999");
+        PreciseInt test2 = new PreciseInt("990001");
+        PreciseInt test3 = test1.multiply(test2, 0);
+        assertEquals("99000099009999", test3.getIntValue(true));
+        
+        PreciseInt test4 = new PreciseInt("1119111");
+        PreciseInt test5 = new PreciseInt("55565");
+        PreciseInt test6 = new PreciseInt("33333");
+        
+        PreciseInt test7 = test5.addition(test6, true, 0);
+        PreciseInt test8 = test7.multiply(test4, 0);
+        assertEquals(test8.getIntValue(true), "99486729678");
+        
+        PreciseInt test9 = test8.addition(test3, true, 0);
+        assertEquals(test9.getIntValue(true), "99099585739677");
+        
+        PreciseInt test10 = new PreciseInt("88888888");
+        PreciseInt solution = test10.addition(test9, true, 0);
+        assertEquals(solution.getIntValue(true), "99099674628565");
     }
 }

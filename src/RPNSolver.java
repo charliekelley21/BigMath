@@ -23,15 +23,9 @@ public class RPNSolver {
      */
     public String[] evaluate(String[] problem) {
         bin.clear(); // clear stack for each problem
-        String[] solution = new String[problem.length + 2]; // copy problem to
-                                                            // solution
-        for (int i = 0; i < problem.length; i++) { // copy each element of
-                                                   // problem
-            solution[i] = problem[i];
-        }
-        solution[solution.length - 2] = "="; // append "=" for solution
-
-        for (String token : problem) { // process each token
+        String[] solution = tokenize(problem);
+        for (int i = 0; i < problem.length; i++) {
+            String token = solution[i];
             if (isNum(token)) {
                 bin.push(new PreciseInt(token)); // push PreciseInt objects onto
                                                  // stack
@@ -52,6 +46,25 @@ public class RPNSolver {
         solution[solution.length - 1] = bin.topValue().getIntValue(true);
         return solution;
     }
+    
+    public String[] tokenize(String[] tokens) {
+        String[] prob = new String[tokens.length+2];
+        for(int i = 0; i < tokens.length; i++) {
+            switch(tokens[i]) {
+                case "+":
+                case "*":
+                case "^":
+                    prob[i] = tokens[i];
+                    break;
+                default:
+                    PreciseInt temp = new PreciseInt(tokens[i]);
+                    prob[i] = temp.getIntValue(true);
+                    break;
+            }
+        }
+        prob[prob.length-2] = "=";
+        return prob;
+    }
 
 
     /**
@@ -62,19 +75,25 @@ public class RPNSolver {
      *            string of operation to be performed
      */
     public void evaluateOperator(String op) {
-        PreciseInt a = bin.pop();
         PreciseInt b = bin.pop();
+        PreciseInt a = bin.pop();
+        System.out.print(a.getIntValue(true) + op + b.getIntValue(true));
+        PreciseInt sol;
         switch (op) {
             case "+":
-                bin.push(a.addition(b, true, 0));
+                sol = a.addition(b, true, 0);
                 break;
             case "*":
-                bin.push(a.multiply(b, 0));
+                sol = a.multiply(b, 0);
                 break;
             case "^":
-                bin.push(a.exponent(b));
+                sol = a.exponent(b);
                 break;
+            default:
+                sol = new PreciseInt();
         }
+        System.out.print("=" + sol.getIntValue(true) + "\n");
+        bin.push(sol);
     }
 
 

@@ -54,6 +54,7 @@ public class PreciseInt extends LList {
                 remove();
             }
         }
+        
     }
 
 
@@ -185,8 +186,7 @@ public class PreciseInt extends LList {
         // if exponent 0 or 1 return 1 or this respectively
         String exponentInt = exponent.getIntValue(true);
         if (exponentInt.equals("0")) {
-            PreciseInt temp = new PreciseInt();
-            temp.append(1);
+            PreciseInt temp = new PreciseInt("1");
             return temp;
         }
         if (exponentInt.equals("1")) {
@@ -264,5 +264,4 @@ public class PreciseInt extends LList {
         } // check for leading 0's
         return quotient;
     }
-
 }
