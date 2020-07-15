@@ -1,11 +1,3 @@
-
-/**
- * The test case for the LList Class.
- * 
- * @author Barak Finnegan (bjfinn98)
- * @version 2020.07.11
- */
-
 import java.util.NoSuchElementException;
 import student.TestCase;
 
