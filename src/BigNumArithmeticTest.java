@@ -42,6 +42,7 @@ public class BigNumArithmeticTest extends TestCase {
             test.main(arg);
         }
         catch (Exception e) {
+            // empty in order to test main
         }
     }
 

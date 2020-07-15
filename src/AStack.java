@@ -15,7 +15,7 @@ class AStack<E> implements Stack<E> {
     /**
      * array of type <E> that will maintain the values of the stack
      */
-    private E stackArray[]; // Array holding stack
+    private E[] stackArray; // Array holding stack
 
     /**
      * default size of the stack if the size was not specified
@@ -68,8 +68,9 @@ class AStack<E> implements Stack<E> {
      * @return Boolean if push was successful
      */
     public boolean push(E it) {
-        if (top >= maxSize)
+        if (top >= maxSize) {
             return false;
+        }
         stackArray[top++] = it;
         return true;
     }
@@ -81,8 +82,9 @@ class AStack<E> implements Stack<E> {
      * @return top element of the stack that is popped
      */
     public E pop() {
-        if (top == 0)
+        if (top == 0) {
             return null;
+        }
         return stackArray[--top];
     }
 
@@ -93,8 +95,9 @@ class AStack<E> implements Stack<E> {
      * @return top value of the stack
      */
     public E topValue() { // Return top element
-        if (top == 0)
+        if (top == 0) {
             return null;
+        }
         return stackArray[top - 1];
     }
 
