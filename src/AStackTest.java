@@ -4,7 +4,7 @@ import student.TestCase;
  * This class is responsible for testing the AStack class
  * 
  * @author Barak Finnegan (bjfinn98)
- * @version 2020.07.11
+ * @version 2020.07.15
  */
 public class AStackTest extends TestCase {
 

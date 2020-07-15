@@ -11,6 +11,9 @@ public class RPNSolver {
      */
     protected AStack<PreciseInt> bin;
 
+    /**
+     * Creates an RPNSOlver with an empty bin ready to evaluate problems
+     */
     RPNSolver() {
         bin = new AStack<PreciseInt>();
         bin.clear();
@@ -54,7 +57,7 @@ public class RPNSolver {
 
     /**
      * Cleans up the provided problem
-     * 
+     * @param tokens String array of problem tokens 
      * @return cleaned array of problem Strings
      */
     public String[] tokenize(String[] tokens) {
@@ -101,6 +104,7 @@ public class RPNSolver {
                 break;
             default:
                 solution = new PreciseInt();
+                break;
         }
         solution.cleanZeros();
         bin.push(solution);
