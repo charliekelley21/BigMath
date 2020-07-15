@@ -3,12 +3,8 @@
  * The test case for the PreciseInt Class.
  * 
  * @author Charlie Kelley (charlk21)
-<<<<<<< HEAD
  * @author Barak Finnegan (bjfinn98)
  * @version 2020.07.13
-=======
- * @version 2020.07.14
->>>>>>> branch 'master' of https://github.com/charliekelley21/BigMath.git
  */
 
 import student.TestCase;
@@ -49,10 +45,14 @@ public class PreciseIntTest extends TestCase {
         test1 = new PreciseInt("0000000000000004395");
         assertEquals(4, test1.length());
         assertEquals("4395", test1.getIntValue(true));
-        
+
         test1 = new PreciseInt("000");
         assertEquals(1, test1.length());
         assertEquals("0", test1.getIntValue(true));
+
+        test1 = new PreciseInt("01");
+        assertEquals(1, test1.length());
+        assertEquals("1", test1.getIntValue(true));
     }
 
 
@@ -81,7 +81,8 @@ public class PreciseIntTest extends TestCase {
         test3 = test1.addition(test2, true, 0);
         assertEquals("570", test3.getIntValue(true));
     }
-    
+
+
     /**
      * Tests the multiply method of PreciseInt
      */
@@ -101,8 +102,8 @@ public class PreciseIntTest extends TestCase {
         test3 = test1.multiply(test2, 0);
         assertEquals("99000099009999", test3.getIntValue(true));
     }
-    
-    
+
+
     /**
      * Tests the exponent method of PreciseInt
      */
@@ -127,8 +128,8 @@ public class PreciseIntTest extends TestCase {
         test1 = test1.exponent(test2);
         assertEquals("125", test1.getIntValue(true));
     }
-    
-    
+
+
     /**
      * Tests the decrement method of PreciseInt
      */
@@ -136,13 +137,13 @@ public class PreciseIntTest extends TestCase {
         test1 = new PreciseInt("1299934");
         test1.decrement(test1.head);
         assertEquals("1299933", test1.getIntValue(true));
-        
+
         test1 = new PreciseInt("100");
         test1.decrement(test1.head);
         assertEquals("99", test1.getIntValue(true));
     }
-    
-    
+
+
     /**
      * Tests the divide method of PreciseInt
      */
@@ -150,7 +151,7 @@ public class PreciseIntTest extends TestCase {
         test1 = new PreciseInt("217");
         PreciseInt test2 = test1.divide(7);
         assertEquals("31", test2.getIntValue(true));
-        
+
         test1 = new PreciseInt("313");
         test2 = test1.divide(3);
         assertEquals("104", test2.getIntValue(true));

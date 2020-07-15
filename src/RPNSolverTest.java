@@ -35,6 +35,18 @@ public class RPNSolverTest extends TestCase {
         assertEquals(solution[solution.length-2], "="); // "=" still appended despite bad input
         assertEquals(solution[solution.length-1], "2116"); // no solution append because of incorrect equation
         
+<<<<<<< Updated upstream
+=======
+     // [000000056669777, 99999911111, +, 352324012, +, 03, ^, 555557778, *]
+        // This is the first problem
+        String[] problem4 = { "000000056669777", "99999911111", "+",
+            "352324012", "+", "03", "^", "555557778", "*" };
+        solution = testRPN.evaluate(problem4);
+        assertEquals(solution[solution.length - 2], "=");
+        assertEquals(solution[solution.length - 1],
+            "562400792227677956625810678708149922000000");
+        
+>>>>>>> Stashed changes
         System.out.print("Start debug\n");
         String[] problem3 = {"99999999", "990001", "*", "1119111", "55565", "33333", 
                                 "+", "*", "+", "88888888", "+"}; // = 99099674628565
