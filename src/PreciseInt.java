@@ -158,7 +158,6 @@ public class PreciseInt extends LList {
     /**
      * This is an exponentiation method for the PreciseInt class.
      * 
-     * @return PreciseInt the result of the operation
      * @param exponent
      *            This PreciseInt ^ exponent.
      * @return exponentiation of two PreciseInt objects

@@ -1,3 +1,4 @@
+import student.TestCase;
 
 /**
  * This class tests the Link class
@@ -5,6 +6,8 @@
  * @author Barak Finnegan (bjfinn98)
  * @version 2020.07.11
  */
+<<<<<<< HEAD
+=======
 
 import student.TestCase;
 
@@ -14,6 +17,7 @@ import student.TestCase;
  * @version 2020.07.15
  *
  */
+>>>>>>> branch 'master' of https://github.com/charliekelley21/BigMath.git
 public class LinkTest extends TestCase {
 
     // set up variables

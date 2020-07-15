@@ -1,3 +1,4 @@
+import student.TestCase;
 
 /**
  * The test case for the PreciseInt Class.
@@ -6,6 +7,8 @@
  * @author Barak Finnegan (bjfinn98)
  * @version 2020.07.13
  */
+<<<<<<< HEAD
+=======
 
 import student.TestCase;
 
@@ -16,6 +19,7 @@ import student.TestCase;
  * @version 2020.07.15
  *
  */
+>>>>>>> branch 'master' of https://github.com/charliekelley21/BigMath.git
 public class PreciseIntTest extends TestCase {
     // set up variables
     private PreciseInt test1;
