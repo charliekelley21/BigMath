@@ -179,6 +179,7 @@ public class LList implements List {
      * 
      * @param pos
      *            position to move curr pointer to
+     * @return true if curr was moved to pos
      */
     public boolean moveToPos(int pos) {
         if ((pos < 0) || (pos > listSize)) {
