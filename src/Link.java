@@ -2,7 +2,7 @@
 /**
  * Class for a Link that provides the nodes that a Linked List is built upon
  * Copyright 2016 by OpenDSA Project Contributors and distributed under
- *     an MIT license
+ * an MIT license
  * 
  * @author Charlie Kelley (charlk21)
  * @version 2020.07.14
@@ -62,7 +62,8 @@ public class Link {
      * @return modified value
      */
     int setElement(int newDigit) {
-        return digit = newDigit;
+        digit = newDigit;
+        return digit;
     }
 
 
@@ -84,7 +85,8 @@ public class Link {
      * @return pointer to modified next node
      */
     Link setNext(Link newPtr) {
-        return ptr = newPtr;
+        ptr = newPtr;
+        return ptr;
     }
 
 }
