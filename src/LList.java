@@ -89,7 +89,7 @@ public class LList implements List {
      * @return value that was removed from the Linked List
      */
     public int remove() throws NoSuchElementException {
-        if (curr == tail) {// nothing to remove
+        if (curr == tail) { // nothing to remove
             throw new NoSuchElementException("remove() in LList has current of "
                 + curr + " and size of " + listSize
                 + " that is not a valid element");

@@ -1,3 +1,4 @@
+import student.TestCase;
 
 /**
  * This class tests the Link class
@@ -5,9 +6,6 @@
  * @author Barak Finnegan (bjfinn98)
  * @version 2020.07.11
  */
-
-import student.TestCase;
-
 public class LinkTest extends TestCase {
 
     // set up variables

@@ -1,3 +1,4 @@
+import student.TestCase;
 
 /**
  * The test case for the PreciseInt Class.
@@ -6,9 +7,6 @@
  * @author Barak Finnegan (bjfinn98)
  * @version 2020.07.13
  */
-
-import student.TestCase;
-
 public class PreciseIntTest extends TestCase {
     // set up variables
     private PreciseInt test1;
