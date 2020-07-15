@@ -87,6 +87,17 @@ public class InputParser {
             if (problem.length > 2) {
                 // evaluate returns the answer in string array
                 String[] answerToProblem = solver.evaluate(problem);
+
+                // if the answerToProblem has a null answer we are shrinking it
+                // by one value and forgetting the null value
+                if (answerToProblem[answerToProblem.length - 1] == null) {
+                    String[] copy = new String[answerToProblem.length - 1];
+                    for (int i = 0; i < copy.length; i++) {
+                        copy[i] = answerToProblem[i];
+                    }
+                    answerToProblem = copy;
+                }
+
                 String concatinationOfProblem = "";
                 // rebuilds the answer to string
                 for (int i = 0; i < answerToProblem.length; i++) {
@@ -95,6 +106,7 @@ public class InputParser {
                         concatinationOfProblem += " ";
                     }
                 }
+                
                 // store in the ans array
                 ans[problemNumber] = concatinationOfProblem;
                 problemNumber++;
