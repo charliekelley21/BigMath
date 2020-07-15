@@ -11,7 +11,7 @@ import student.TestCase;
 public class BigNumArithmeticTest extends TestCase {
 
     private static BigNumArithmetic test = new BigNumArithmetic();
-    
+
     /**
      * Tests the main method of BigNumArithmetic
      */

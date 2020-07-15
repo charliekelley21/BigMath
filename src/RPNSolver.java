@@ -46,15 +46,17 @@ public class RPNSolver {
         solution[solution.length - 1] = bin.topValue().getIntValue(true);
         return solution;
     }
-    
+
+
     /**
      * Cleans up the provided problem
+     * 
      * @return cleaned array of problem Strings
      */
     public String[] tokenize(String[] tokens) {
-        String[] prob = new String[tokens.length+2];
-        for(int i = 0; i < tokens.length; i++) {
-            switch(tokens[i]) {
+        String[] prob = new String[tokens.length + 2];
+        for (int i = 0; i < tokens.length; i++) {
+            switch (tokens[i]) {
                 case "+":
                 case "*":
                 case "^":
@@ -66,10 +68,11 @@ public class RPNSolver {
                     break;
             }
         }
-        prob[prob.length-2] = "=";
-        prob[prob.length-1] = "";
+        prob[prob.length - 2] = "=";
+        prob[prob.length - 1] = "";
         return prob;
     }
+
 
     /**
      * Evaluates a given operator for a addition, multiplication, or

@@ -20,6 +20,7 @@ public class PreciseInt extends LList {
         clear();
     }
 
+
     /**
      * Creates a new PreciseInt with the given value. This constructor
      * handles leading zeros.
@@ -102,7 +103,7 @@ public class PreciseInt extends LList {
         }
         int addendValue = addend.isAtEnd() ? 0 : addend.getValue();
         int sum = getValue() + addendValue + carry; // get the sum of
-                                                          // current place
+                                                    // current place
         curr.setElement(sum % 10); // set element of current position to sum
                                    // (excluding carry)
         next(); // move to next position
@@ -244,9 +245,10 @@ public class PreciseInt extends LList {
         } // check for leading 0's
         return quotient;
     }
-    
+
+
     public void cleanZeros() {
-        moveToPos(length()-1);
+        moveToPos(length() - 1);
         if ((getValue() == 0) && (length() > 1)) {
             remove();
             cleanZeros();

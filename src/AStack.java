@@ -2,8 +2,9 @@
 /**
  * Stack implemented using an Array
  * 
- * @author Charlie Kelley   (charlk21)
- * @source Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license
+ * @author Charlie Kelley (charlk21)
+ * @source Copyright 2016 by OpenDSA Project Contributors and distributed under
+ *         an MIT license
  * @version 2020.07.14
  *
  * @param <E>

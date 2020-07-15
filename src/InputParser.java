@@ -96,7 +96,7 @@ public class InputParser {
                         concatinationOfProblem += " ";
                     }
                 }
-                
+
                 // store in the ans array
                 ans[problemNumber] = concatinationOfProblem;
                 problemNumber++;

@@ -17,8 +17,8 @@ public class InputParserTest extends TestCase {
         try {
             test = new InputParser("src/test/BignumInput.txt");
         }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
+        catch (Exception e) {
+            // This shouldn't happen
         }
     }
 

@@ -3,8 +3,9 @@ import java.util.NoSuchElementException;
 /**
  * List class ADT to store integer values.
  * 
- * @author Charlie Kelley   (charlk21)
- * @source Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license
+ * @author Charlie Kelley (charlk21)
+ * @source Copyright 2016 by OpenDSA Project Contributors and distributed under
+ *         an MIT license
  * @version 2020.07.14
  *
  */

@@ -30,10 +30,16 @@ public class RPNSolverTest extends TestCase {
         assertEquals(solution[solution.length - 2], "=");
         assertEquals(solution[solution.length - 1], "70");
 
-        String[] problem2 = {"22", "24", "+", "2", "^"};   // testing repeated solutions on same RPNSolver object
+        String[] problem2 = { "22", "24", "+", "2", "^" }; // testing repeated
+                                                           // solutions on same
+                                                           // RPNSolver object
         solution = testRPN.evaluate(problem2);
-        assertEquals(solution[solution.length-2], "="); // "=" still appended despite bad input
-        assertEquals(solution[solution.length-1], "2116"); // no solution append because of incorrect equation
+        assertEquals(solution[solution.length - 2], "="); // "=" still appended
+                                                          // despite bad input
+        assertEquals(solution[solution.length - 1], "2116"); // no solution
+                                                             // append because
+                                                             // of incorrect
+                                                             // equation
 
         // [000000056669777, 99999911111, +, 352324012, +, 03, ^, 555557778, *]
         // This is the first problem
@@ -44,11 +50,11 @@ public class RPNSolverTest extends TestCase {
         assertEquals(solution[solution.length - 1],
             "562400792227677956625810678708149922000000");
 
-        String[] problem3 = {"99999999", "990001", "*", "1119111", "55565", "33333", 
-                                "+", "*", "+", "88888888", "+"}; // = 99099674628565
+        String[] problem3 = { "99999999", "990001", "*", "1119111", "55565",
+            "33333", "+", "*", "+", "88888888", "+" }; // = 99099674628565
         solution = testRPN.evaluate(problem3);
-        assertEquals(solution[solution.length-2], "=");
-        assertEquals(solution[solution.length-1], "99099674628565");
+        assertEquals(solution[solution.length - 2], "=");
+        assertEquals(solution[solution.length - 1], "99099674628565");
     }
 
 
@@ -59,15 +65,15 @@ public class RPNSolverTest extends TestCase {
         assertEquals(solution[solution.length - 2], "="); // "=" still appended
                                                           // despite bad input
         assertEquals(solution[solution.length - 1], ""); // no solution append
-                                                           // because of
-                                                           // incorrect equation
+                                                         // because of
+                                                         // incorrect equation
 
         String[] problem2 = { "22", "24", "34", "2", "*" };
         solution = testRPN.evaluate(problem2);
         assertEquals(solution[solution.length - 2], "="); // "=" still appended
                                                           // despite bad input
         assertEquals(solution[solution.length - 1], ""); // no solution append
-                                                           // because of
-                                                           // incorrect equation
+                                                         // because of
+                                                         // incorrect equation
     }
 }
