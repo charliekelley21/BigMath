@@ -25,27 +25,49 @@ public class RPNSolverTest extends TestCase {
      */
     public void testEvaluateGood() {
         assertEquals(0, testRPN.binSize());
-        String[] problem = {"12", "23", "+", "2", "*"}; // = 70
+        String[] problem = { "12", "23", "+", "2", "*" }; // = 70
         String[] solution = testRPN.evaluate(problem);
-        assertEquals(solution[solution.length-2], "=");        
-        assertEquals(solution[solution.length-1], "70");
-        
-        String[] problem2 = {"22", "24", "+", "2", "^"};   // testing repeated solutions on same RPNSolver object
+        assertEquals(solution[solution.length - 2], "=");
+        assertEquals(solution[solution.length - 1], "70");
+
+        // [000000056669777, 99999911111, +, 352324012, +, 03, ^, 555557778, *]
+        // This is the first problem
+        String[] problem2 = { "000000056669777", "99999911111", "+",
+            "352324012", "+", "03", "^", "555557778", "*" };
         solution = testRPN.evaluate(problem2);
-        assertEquals(solution[solution.length-2], "="); // "=" still appended despite bad input
-        assertEquals(solution[solution.length-1], "278784"); // no solution append because of incorrect equation
+        assertEquals(solution[solution.length - 2], "=");
+        assertEquals(solution[solution.length - 1],
+            "562400792227677956625810678708149922000000");
+
+        String[] problem3 = { "22", "24", "+", "2", "^" }; // testing repeated
+                                                           // solutions on same
+                                                           // RPNSolver object
+        solution = testRPN.evaluate(problem3);
+        assertEquals(solution[solution.length - 2], "="); // "=" still appended
+                                                          // despite bad input
+        assertEquals(solution[solution.length - 1], "278784"); // no solution
+                                                               // append because
+                                                               // of incorrect
+                                                               // equation
     }
-    
+
+
     public void testEvaluateBad() {
         assertEquals(0, testRPN.binSize());
-        String[] problem = {"+", "23", "+", "2", "*"};
+        String[] problem = { "+", "23", "+", "2", "*" };
         String[] solution = testRPN.evaluate(problem);
-        assertEquals(solution[solution.length-2], "="); // "=" still appended despite bad input
-        assertEquals(solution[solution.length-1], null); // no solution append because of incorrect equation
-        
-        String[] problem2 = {"22", "24", "34", "2", "*"};
+        assertEquals(solution[solution.length - 2], "="); // "=" still appended
+                                                          // despite bad input
+        assertEquals(solution[solution.length - 1], null); // no solution append
+                                                           // because of
+                                                           // incorrect equation
+
+        String[] problem2 = { "22", "24", "34", "2", "*" };
         solution = testRPN.evaluate(problem2);
-        assertEquals(solution[solution.length-2], "="); // "=" still appended despite bad input
-        assertEquals(solution[solution.length-1], null); // no solution append because of incorrect equation
+        assertEquals(solution[solution.length - 2], "="); // "=" still appended
+                                                          // despite bad input
+        assertEquals(solution[solution.length - 1], null); // no solution append
+                                                           // because of
+                                                           // incorrect equation
     }
 }

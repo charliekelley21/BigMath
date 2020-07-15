@@ -33,7 +33,7 @@ public class PreciseInt extends LList {
         int nonZeroPos = 0; // stores position of last non-zero digit
         boolean hasInt = false;
         for (int i = 1; i <= num.length(); i++) {
-            char c = num.charAt(num.length()-i);
+            char c = num.charAt(num.length() - i);
             int digit = Character.getNumericValue(c);
             append(digit); // append digit to PreciseInt
             if (c != '0') { // if digit append was non-zero,
@@ -48,9 +48,9 @@ public class PreciseInt extends LList {
                 remove();
             }
         }
-        else {  //remove leading zeros
+        else { // remove leading zeros
             moveToPos(nonZeroPos);
-            while(!isAtEnd()) {
+            while (!isAtEnd()) {
                 remove();
             }
         }
