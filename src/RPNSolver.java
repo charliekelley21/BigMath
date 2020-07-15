@@ -5,6 +5,10 @@
  * @version 2020.07.13
  */
 public class RPNSolver {
+    /**
+     * A stack to hold all PreciseInt objects used in the evaluation of a
+     * problem
+     */
     protected AStack<PreciseInt> bin;
 
     RPNSolver() {

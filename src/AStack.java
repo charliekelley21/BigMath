@@ -1,10 +1,11 @@
 
 /**
  * Stack implemented using an Array
+ * Copyright 2016 by OpenDSA Project Contributors and distributed under
+ *     an MIT license
  * 
  * @author Charlie Kelley (charlk21)
- * @source Copyright 2016 by OpenDSA Project Contributors and distributed under
- *         an MIT license
+ * 
  * @version 2020.07.14
  *
  * @param <E>
@@ -63,7 +64,7 @@ class AStack<E> implements Stack<E> {
 
     /**
      * Push "it" onto stack
-     * 
+     * @param it object to be pushed onto the stack
      * @return Boolean if push was successful
      */
     public boolean push(E it) {
