@@ -1,6 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
- * 
  * This class is used to take an input file name, validate it and call the
  * RPNSolver class to solve the problems one at a time. It is also responsible
  * for printing the solutions.
@@ -8,11 +10,6 @@
  * @author Barak Finnegan (bjfinn98)
  * @version 2020.07.10
  */
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class InputParser {
 
     // Initialize private vars
@@ -47,7 +44,6 @@ public class InputParser {
      * This method will count how many valid problems so that ans knows how big
      * of a String array it needs to be
      * 
-     * @return int of number of non-empty lines in file
      * @throws FileNotFoundException
      *             should be impossible
      */

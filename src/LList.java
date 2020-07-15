@@ -87,14 +87,16 @@ public class LList implements List {
      * @return value that was removed from the Linked List
      */
     public int remove() throws NoSuchElementException {
-        if (curr == tail) // nothing to remove
+        if (curr == tail) {// nothing to remove
             throw new NoSuchElementException("remove() in LList has current of "
                 + curr + " and size of " + listSize
                 + " that is not a valid element");
+        }
         int removeDigit = curr.element(); // remember digit
         curr.setElement(curr.next().element()); // pull forward the next element
-        if (curr.next() == tail)
+        if (curr.next() == tail) {
             tail = curr; // removed last, move tail
+        }
         curr.setNext(curr.next().next()); // point around unneeded digit
         listSize--; // decrease List size by one
         return removeDigit; // return value
@@ -123,8 +125,9 @@ public class LList implements List {
      * is not the tail
      */
     public void next() {
-        if (curr != tail)
+        if (curr != tail) {
             curr = curr.next();
+        }
     }
 
 
@@ -143,8 +146,9 @@ public class LList implements List {
      * front
      */
     public void prev() {
-        if (head.next() == curr)
+        if (head.next() == curr) {
             return;
+        }
         Link temp = head;
         while (temp.next() != curr) {
             temp = temp.next();

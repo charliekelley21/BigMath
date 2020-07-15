@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 
 /**
  * BigNumArithmetic Project Runner class
@@ -9,10 +10,6 @@
  * @author Barak Finnegan (bjfinn98)
  * @version 2020.07.10
  */
-
-import java.io.FileNotFoundException;
-import java.lang.IllegalArgumentException;
-
 public class BigNumArithmetic {
 
     /**
