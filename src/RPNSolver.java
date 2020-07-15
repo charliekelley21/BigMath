@@ -80,17 +80,19 @@ public class RPNSolver {
     public void evaluateOperator(String op) {
         PreciseInt b = bin.pop();
         PreciseInt a = bin.pop();
+        PreciseInt solution = new PreciseInt();
         switch (op) {
             case "+":
-                bin.push(a.addition(b, true, 0));
+                solution = a.addition(b, true, 0);
                 break;
             case "*":
-                bin.push(a.multiply(b, 0));
+                solution = a.multiply(b, 0);
                 break;
             case "^":
-                bin.push(a.exponent(b));
+                solution = a.exponent(b);
                 break;
-        }
+        }    
+        bin.push(solution);
     }
 
 

@@ -44,7 +44,6 @@ public class RPNSolverTest extends TestCase {
         assertEquals(solution[solution.length - 1],
             "562400792227677956625810678708149922000000");
 
-        System.out.print("Start debug\n");
         String[] problem3 = {"99999999", "990001", "*", "1119111", "55565", "33333", 
                                 "+", "*", "+", "88888888", "+"}; // = 99099674628565
         solution = testRPN.evaluate(problem3);

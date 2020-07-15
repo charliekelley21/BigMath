@@ -110,17 +110,17 @@ public class PreciseInt extends LList {
             moveToStart(); // addition starts at the beginning
             addend.moveToStart(); // of both PreciseInt objects
         }
-        if (addend.isAtEnd()) { // base case: second addend is out of things to
-                                // add
-            if (carry != 0) {
-                append(carry);
-            }
-            return this;
-        }
         if (isAtEnd()) { // extend first addend if the end is reached
+            if (addend.isAtEnd()) {
+                if (carry != 0) {
+                    append(carry);
+                }
+                return this;
+            }
             append(0);
         }
-        int sum = getValue() + addend.getValue() + carry; // get the sum of
+        int addendValue = addend.isAtEnd() ? 0 : addend.getValue();
+        int sum = getValue() + addendValue + carry; // get the sum of
                                                           // current place
         curr.setElement(sum % 10); // set element of current position to sum
                                    // (excluding carry)
@@ -237,6 +237,24 @@ public class PreciseInt extends LList {
         moveToPos(length() - 1); // check if borrowing left a stray 0
         if (getValue() == 0) {
             remove();
+        }
+    }
+    
+    /**
+     * Helper method for the addition method, but may also be useful elsewhere.
+     * assumes that the value is always greater than or equal to 1.
+     * 
+     * @param node
+     *            link in list to increment
+     */
+    public void increment(Link node, int carry) {
+        if (node == tail) {
+            append(carry);
+        }
+        int v = node.element() + carry; // get value of current node
+        node.setElement(v%10);
+        if (v > 9) {
+            increment(node.next(), v/10);
         }
     }
 
